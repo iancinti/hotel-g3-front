@@ -1,9 +1,10 @@
-import Login from "../components/login/login";
+import Header from "../components/header/header";
+import Buscador from "../components/reserva/buscador/buscador";
 
 
 function ReservaPage() {
     return (
-        <Login></Login>
+        <Buscador></Buscador>
     );
 }
 

@@ -1,9 +1,10 @@
-import Header from "./components/header";
+import Header from "./components/header/header";
+
 
 function Home() {
   return (
     <div>
-      <Header></Header>
+      <Header bannerImg='/images/banners/banner-home.jpg'></Header>
     </div>
   );
 }

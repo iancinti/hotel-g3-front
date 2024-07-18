@@ -8,6 +8,7 @@
     gap: 10px;
     color: #000;
     animation: appearTop .6s backwards ease-in;
+    z-index: 100;
 }
 .frm input[type='text']{
     outline: none;
