@@ -1,3 +1,4 @@
+import Filtro from "./components/filtro";
 
 
 export default function Home() {
