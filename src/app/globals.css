@@ -4,6 +4,7 @@
 
 :root {
   --principal: #081928;
+  --fondo: #E6F1FC;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,6 +19,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body{
+  background-color: var(--fondo);
 }
 
 @layer utilities {
