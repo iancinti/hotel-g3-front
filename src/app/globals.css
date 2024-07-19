@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --principal: #081928;
+  --fondo: #E6F1FC;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,6 +15,16 @@
   }
 }
 
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: var(--fondo);
+}
 
 
 @layer utilities {

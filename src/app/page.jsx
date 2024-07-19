@@ -1,10 +1,17 @@
-import Footer from "./components/footer";
+
+import Header from "./components/header/header";
+
+
 
 
 function Home() {
   return (
     <div>
+
+      <Header bannerImg='/images/banners/banner-home.jpg'></Header>
+
       
+
     </div>
   );
 }
