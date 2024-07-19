@@ -1,4 +1,6 @@
+
 import './globals.css'
+
 
 export const metadata = {
   title: "Hotel Grupo 3",
@@ -11,4 +13,5 @@ export default function RootLayout({ children }) {
         <body>{children}</body>
     </html>
   );
+
 }
