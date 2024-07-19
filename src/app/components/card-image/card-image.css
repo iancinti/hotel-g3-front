@@ -1,0 +1,82 @@
+.artc-contain{
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    min-height: 320px;
+    padding: 1em;
+    box-shadow: 0 0 12px -5px black;
+}
+
+.artc-header{
+    width: 100%;
+    height: 210px;
+    padding-bottom: 1em;
+    overflow: hidden;
+}
+.artc-image {
+    width: 100%;
+    height: 100%;
+    object-fit: conver;
+    scale: 1.2;
+    transform: rotate(10deg);
+    transition: all ease .4s;
+}
+.artc-contain:hover .artc-image {
+    scale: 1;
+    transform: rotate(0);
+}
+
+.artc-main{
+    flex-grow: 1;
+    padding: 7px;
+}
+.artc-title {
+    font-size: 1.45em;
+    padding-bottom: 16px;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 920px) {
+    .artc-contain {
+        width: 450px;
+        height: 575px;
+    }
+
+    .artc-header {
+        height: 350px;
+    }
+
+    .artc-main {
+        padding: 10px;
+    }
+
+    .artc-title {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1.4em;
+    }
+}
+@media screen and ( min-width: 600px ) {
+    .artc-contain {
+        width: 400px;
+        min-height: 500px;
+    }
+
+    .artc-header {
+        height: 350px;
+    }
+
+    .artc-main {
+        padding: 10px;
+    }
+
+    .artc-title {
+        font-size: 1.65em;
+    }
+    p{
+        font-size: 1.28em;
+    }
+}
+
