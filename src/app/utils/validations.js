@@ -1,0 +1,21 @@
+
+
+export class Validations {
+
+    static isNumberPhone( value ){
+        const regex = /^(?:\+[0-9]{2,3}\s?)?[0-9]{6,10}$/;
+
+        return regex.test(value)
+            ? ['', true]
+            : ['Numero de invalido', false];
+    }
+
+    static isMailValid( value ){
+        const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+        return regex.test(value)
+            ? ['', true]
+            : ['Email de invalido', false];
+    }
+
+}
