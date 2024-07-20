@@ -1,29 +1,40 @@
 'use client'
+import './buscador.css';
+
 import * as React from 'react';
+
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Button, Container } from '@mui/material';
+import { Container } from '@mui/material';
 
-import './buscador.css';
+import Boton from '../../boton';
+import { Validations } from '@/app/utils/validations';
+
+const dataForm = {
+    checkin: '',
+    checkout: '',
+    room: '2',
+    person: '3'
+}
 
 export default function Buscador() {
-    const [habitacion, setHabitacion] = React.useState(1);
-    const [personas, setPersonas] = React.useState(1);
+    const [form, setForm] = React.useState(dataForm);
+    const maxRooms = 6;
+    const maxPerson = 6;
 
-    const addHabitacion = () => setHabitacion(habitacion + 1);
-    const deletedHabitacion = () => {
-        if (habitacion > 1) {
-            setHabitacion(habitacion - 1);
-        }
-    };
+    const onSetForm = (name, value) => {
+        setForm({
+            ...form,
+            [name]: value,
+        });
+    }
 
-    const addPersona = () => setPersonas(personas + 1);
-    const deletedPersona = () => {
-        if (personas > 1) {
-            setPersonas(personas - 1);
+    const onsubmit = () => {
+        if (Validations.allFieldRequired(form)) {
+            alert('Buscando');
         }
-    };
+    }
 
     const styleDatePicker = {
         '& input': {
@@ -47,7 +58,8 @@ export default function Buscador() {
                             <DatePicker
                                 sx={styleDatePicker}
                                 format='DD/MM/YYYY'
-                                
+                                selected={form.checkin}
+                                onChange={(date)=> onSetForm( 'checkin', date ) }
                             />
                         </LocalizationProvider>
                     </div>
@@ -57,28 +69,45 @@ export default function Buscador() {
                             <DatePicker
                                 sx={styleDatePicker}
                                 format='DD/MM/YYYY'
+                                selected={form.checkout}
+                                onChange={(date) => onSetForm('checkout', date)}
                             />
                         </LocalizationProvider>
                     </div>
                     <div className="item relative">
                         <label>Habitación</label>
-                        <input type="number" value={habitacion} />
+                        <input type="number" value={form.room} readOnly/>
                         <div className='grid absolute bottom-0 right-4'>
-                            <button onClick={addHabitacion}>▲</button>
-                            <button onClick={deletedHabitacion}>▼</button>
+                            <button onClick={() => {
+                                if (form.room < maxRooms) {
+                                    onSetForm('room', +form.room + 1)
+                                }
+                            }}>▲</button>
+                            <button onClick={()=>{
+                                if (+form.room > 1) {
+                                    onSetForm('room', +form.room - 1);
+                                }
+                            }}>▼</button>
                         </div>
                     </div>
                     <div className='item relative'>
                         <label>Personas</label>
-                        <input type="number" value={personas} />
+                        <input type="number" value={form.person} readOnly/>
                         <div className='grid absolute bottom-0 right-4'>
-                            <button onClick={addPersona}>▲</button>
-                            <button onClick={deletedPersona}>▼</button>
+                            <button onClick={() => {
+                                if (form.person < maxPerson) {
+                                    onSetForm('person', +form.person + 1)
+                                }
+                            }}>▲</button>
+                            <button onClick={() => {
+                                if (+form.person > 1) {
+                                    onSetForm('person', +form.person - 1);
+                                }
+                            }}>▼</button>
                         </div>
                     </div>
-                    <Button variant='contained'>
-                        Buscar
-                    </Button>
+                    <Boton text='Buscar' handledClick={onsubmit}>
+                    </Boton>
                 </div>
             </Container>
         </div>

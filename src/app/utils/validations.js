@@ -7,7 +7,7 @@ export class Validations {
 
         return regex.test(value)
             ? ['', true]
-            : ['Numero de invalido', false];
+            : ['Numero invalido', false];
     }
 
     static isMailValid( value ){
@@ -15,7 +15,16 @@ export class Validations {
 
         return regex.test(value)
             ? ['', true]
-            : ['Email de invalido', false];
+            : ['Email invalido', false];
     }
+
+    static allFieldRequired( form ){
+        return Object.values( form ).every( (value)=> value );
+    }
+    
+    static required(value) {
+        return (value) ? ['', true] : ['Campo requerido', false];
+    }
+
 
 }
