@@ -1,0 +1,61 @@
+.content-frm{
+    display: grid;
+    gap: 1.2em;
+}
+.frm-div-input label{
+    width: max-content;
+    display: block;
+    padding: 7px 0;
+    font-size: 1.32rem;
+    position: relative;
+}
+.frm-div-input label::before {
+    content: "*";
+    color: red;
+    position: absolute;
+    top: 2px;
+    right: -11px;
+}
+.frm-div-input input, textarea{
+    width: 100%;
+    height: 2.5rem;
+    outline: none;
+    font-size: 1.21rem;
+}
+input:focus, textarea:focus{
+    border: 1px solid var(--principal);
+}
+input:hover,
+textarea:hover {
+    box-shadow: 0 0 13px -10px black;
+}
+
+
+.frm-div-input textarea{
+    min-height: 200px;
+}
+
+.frm-content-btn{
+    justify-self: end;
+    display: flex;
+    gap: 15px;
+}
+.frm-content-btn input{
+    padding: 5px 10px;
+    background-color: var(--secundario);
+    color: white;
+    cursor: pointer;
+}
+
+.invalid{
+    border: 1px solid red;
+}
+.valid{
+    border: 1px solid rgb(30, 255, 0);
+}
+
+@media screen and (min-width: 620px) {
+    .content-frm {
+        padding: 0 50px;
+    }
+}
