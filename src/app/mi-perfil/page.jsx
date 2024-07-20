@@ -3,24 +3,26 @@ import { Container } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Validations } from "../utils/validations";
+import Boton from "../components/boton";
+import { FormUtils } from "../utils/formUtils";
 
 // !OJO este objeto vendra desde base de datos, solo la propiedad text, el validations se lo coloca aqui
 const dataForm = {
     name: {
         text: 'Miguel',
-        validations: [ ]
+        validations: [ Validations.required ]
     }, 
     app: {
         text: 'Cuellar',
-        validations: [ ]
+        validations: [ Validations.required ]
     },
     email: {
         text: 'miguel@gmail.com',
-        validations: [ Validations.isMailValid ]
+        validations: [ Validations.required, Validations.isMailValid ]
     },
     tel: {
         text: '+591 78071967',
-        validations: [ Validations.isNumberPhone ]
+        validations: [ Validations.required, Validations.isNumberPhone ]
     }
 }
 
@@ -31,7 +33,7 @@ function MiPerfil() {
 
     const onSetForm = (e) => {
         const input = e.target;
-        const { name, value, className } = input;
+        const { name, value } = input;
         const validations = form[name].validations;
 
         setForm({
@@ -42,67 +44,26 @@ function MiPerfil() {
             }
         });
 
+        const [message, isValid] = FormUtils.validarByValue(validations, value);
+        FormUtils.showInfoOneInput(e.target, message, isValid);
     }
 
     const onsubmit = (e) => {
         const inputs = e.target;
         e.preventDefault();
         
-        const [message, isValid, key] = validateForm();
+        const [message, isValid, key] = FormUtils.validateForm(form);
         const spanError = document.getElementById(key);
 
-        for (let i = 0; i < inputs.length; i++) {
-            if ( key == inputs[i].name ) {
-                if (!isValid) {
-                    inputs[i].classList.remove('valid');
-                    inputs[i].classList.add('text-red-500');
-                    spanError.style.display = 'block';
-                    spanError.textContent = message;
-                    return;
-                }
+        FormUtils.showInfoAllForm(
+            { form, inputs, spanError, message, key, isValid,
+                fnOk: changeDatePerfil
             }
-        }
-
-        if (isValid) {
-            for (let i = 0; i < inputs.length; i++) {
-                inputs[i].classList.add('valid');
-                inputs[i].classList.remove('text-red-500');
-            }
-            for (const key of Object.keys(form)) {
-                const span = document.getElementById(key);
-                span.style.display = 'none';
-            }
-            setTimeout(() => {
-                alert('Perfil Cambiado con exito');
-            }, 800);
-        }
+        );
     }
 
-    const validateForm = () => {
-        const correct = ['Mensaje Enviado', true, null];
-        for (const key of Object.keys( form )) {
-            const [ message, valid, k ] = validarByKey( key );
-
-            if(!valid){
-                return [message, valid, k];
-            };
-        }
-
-        return correct;
-    }
-
-    const validarByKey =( key )=>{
-        const { text, validations } = form[key];
-        if (validations.length > 0) {
-            for (let index = 0; index < validations.length; index++) {
-                const validator = validations[index];
-                const [message, isValid] = validator(text);
-                //? Si alguna validacion da falso, entonces se retorna el mensaje de error y la key del form
-                if (!isValid) return [message, isValid, key];
-            }
-        }
-
-        return ['', true, null];
+    const changeDatePerfil =()=>{
+        alert('Perfil actualizado')
     }
 
     return (
@@ -114,7 +75,7 @@ function MiPerfil() {
             </header>
             <Container maxWidth='md'>
                 <main>
-                    <form className="content-frm" onSubmit={onsubmit}>
+                    <form id="formPerfil" className="content-frm" onSubmit={onsubmit}>
                         <div className="frm-div-input">
                             <label htmlFor="nombre">Nombre</label>
                             <input
@@ -159,13 +120,13 @@ function MiPerfil() {
                             />
                             <span id="tel" className="text-red-500 hidden">df</span>
                         </div>
-                        <div className="frm-content-btn">
-                            <input type="submit" value='Enviar' />
-                            <input type="button" value='Cancelar' onClick={() => {
-                                router.push('/');
-                            }} />
-                        </div>
                     </form>
+                    <div className="frm-content-btn justify-center pt-4">
+                        <Boton text='Enviar' type='submit' form='formPerfil' />
+                        <Boton text='Cancelar' handledClick={() => {
+                            router.push('/');
+                        }} />
+                    </div>
                 </main>
             </Container>
         </Container>
