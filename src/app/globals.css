@@ -90,7 +90,7 @@ textarea:hover {
 }
 
 .valid {
-  color: rgb(54, 125, 45);
+  border: 1px solid rgb(54, 125, 45);
 }
 .text-valid {
   color: rgb(54, 125, 45);
