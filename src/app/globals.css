@@ -92,6 +92,9 @@ textarea:hover {
 .valid {
   color: rgb(54, 125, 45);
 }
+.text-valid {
+  color: rgb(54, 125, 45);
+}
 
 @media screen and (min-width: 620px) {
   .content-frm {
