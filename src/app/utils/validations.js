@@ -18,4 +18,8 @@ export class Validations {
             : ['Email de invalido', false];
     }
 
+    static allFieldRequired( form ){
+        return Object.values( form ).every( (value)=> value );
+    }
+
 }
