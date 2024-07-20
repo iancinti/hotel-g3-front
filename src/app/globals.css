@@ -72,6 +72,9 @@ textarea:hover {
 .frm-div-input textarea {
   min-height: 200px;
 }
+.frm-div-input span{
+  width: max-content;
+}
 
 .frm-content-btn {
   justify-self: end;
