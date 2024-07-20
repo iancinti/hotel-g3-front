@@ -26,6 +26,7 @@ const theme = createTheme({
 const Item = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1),
     textAlign: 'center',    
+    backgroundColor: "#E6F1FC"
     }
 
 )); 
@@ -37,7 +38,7 @@ const Footer = () => {
             <ThemeProvider theme={theme} >
                 <CssBaseline />
                 <Box sx={{ flexGrow: 1 }}>
-                    <Grid color="textPrimary" fontWeight={'700'} fontFamily={'Raleway'} style={{ fontSize: '20px'}} alignItems={"center"} container spacing={2}>
+                    <Grid color="textPrimary" fontWeight={'700'} fontFamily={'Raleway'} style={{ fontSize: '20px' }} alignItems={"center"} container spacing={2}>
                         <Grid item xs={12} md={3}>
                             <Item elevation={0}>hotel@gmail.com</Item>
                         </Grid>
