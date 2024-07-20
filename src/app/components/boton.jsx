@@ -5,15 +5,18 @@ import Button from '@mui/material/Button';
 
 
 
-export default function Boton({text, handledClick}) {
+export default function Boton({text, handledClick, type, form}) {
 
     const onClick = ()=>{
-        handledClick();
+        // Se pone esta validacion ya que en tipo 'submit' no necesita la funcion
+        if (handledClick) {
+            handledClick();
+        }
     }
 
     return (
         <Stack>
-            <Button variant="contained" onClick={onClick}>
+            <Button form={form} variant="contained" type={type} onClick={onClick}>
                 {text}
             </Button>
         </Stack>
