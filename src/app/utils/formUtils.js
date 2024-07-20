@@ -58,7 +58,7 @@ export class FormUtils {
 
         if (isValid) {
             for (let i = 0; i < inputs.length; i++) {
-                inputs[i].classList.add('valid');
+                inputs[i].classList.add('valid', 'text-valid');
                 inputs[i].classList.remove('text-red-500');
             }
             for (const key of Object.keys(form)) {
