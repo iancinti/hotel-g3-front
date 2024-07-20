@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { Container } from "@mui/system";
 
 import { useState } from "react";
+import Boton from "../components/boton";
 
 const dataForm = {
     name: '', app: '', email: '', tel: '', message: ''
@@ -24,8 +25,7 @@ function ContactUs() {
         });
     }
 
-    const onsubmit = ( e )=>{
-        e.preventDefault();
+    const onsubmit = ()=>{
         if (validateForm()) {
             // TODO Mostrar modal de exito
             alert('Enviando Mensaje')
@@ -55,7 +55,7 @@ function ContactUs() {
             </header>
             <Container maxWidth='md'>
                 <main>
-                    <form className="content-frm" onSubmit={onsubmit}>
+                    <form className="content-frm">
                         <div className="frm-div-input">
                             <label htmlFor="nombre">Nombre</label>
                             <input 
@@ -107,8 +107,8 @@ function ContactUs() {
                             ></textarea>
                         </div>
                         <div className="frm-content-btn">
-                            <input type="submit" value='Enviar' />
-                            <input type="button" value='Cancelar' onClick={() => {
+                            <Boton text='Enviar' handledClick={onsubmit} />
+                            <Boton text='Cancelar' handledClick={() => {
                                 router.push('/');
                             }}/>
                         </div>
