@@ -4,13 +4,20 @@ import Menu from '@mui/material/Menu';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import { Container } from '@mui/material';
+import Link from 'next/link';
 
-const settings = ['Mi Perfil', 'Cerrar Sesion'];
+const settings = [{
+    text: 'Mi Perfil',
+    path: '/mi-perfil'
+},{
+    text: 'Cerrar Sesion',
+    path: '/logout'
+}
+];
 
 function LogoPerfil() {
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -24,7 +31,8 @@ function LogoPerfil() {
 
     return (
         <Container maxWidth="xl" sx={{
-            display: 'flex', justifyContent: 'space-between', paddingTop: '1rem'
+            display: 'flex', justifyContent: 'space-between', paddingTop: '1rem',
+            alignItems: 'center'
         }}>
             <Typography
                 variant="h6"
@@ -51,10 +59,11 @@ function LogoPerfil() {
             <Box sx={{
                     flexGrow: 0,
                     display: { md: 'flex' }, 
-                    p: 0,
+                    // p: 0,
                     position: { xs: 'absolute', md: 'relative' },
-                    right: { xs: '0' },
-                    paddingRight: { xs: '20px' }
+                    right: { xs: '20px' },
+                    top: { xs: '20px' },
+                    zIndex: { xs: '100' }
                 }}>
                 <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -77,9 +86,15 @@ function LogoPerfil() {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                 >
-                    {settings.map((setting) => (
-                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                            <Typography textAlign="center">{setting}</Typography>
+                    {settings.map(({ path, text }) => (
+                        <MenuItem key={path}
+                            onClick={handleCloseUserMenu}
+                        >
+                            <Link href={path} className='flex-1'>
+                                <Typography>
+                                    { text }
+                                </Typography>
+                            </Link>
                         </MenuItem>
                     ))}
                 </Menu>
