@@ -2,7 +2,6 @@
 import { useRouter } from "next/navigation";
 import { Container } from "@mui/system";
 
-import './contacto.css'
 import { useState } from "react";
 
 const dataForm = {
@@ -110,7 +109,7 @@ function ContactUs() {
                         <div className="frm-content-btn">
                             <input type="submit" value='Enviar' />
                             <input type="button" value='Cancelar' onClick={() => {
-                                router.replace('/');
+                                router.push('/');
                             }}/>
                         </div>
                     </form>
