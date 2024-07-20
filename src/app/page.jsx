@@ -1,7 +1,7 @@
 
 import CardImage from "./components/card-image/card-image";
 import Header from "./components/header/header";
-
+import CardReserva from "./components/reserva/CardReserva";
 
 
 
@@ -85,7 +85,6 @@ function Home() {
           distancia='A .8Km de nuestro hotel'
         ></CardImage>
       </div> */}
-
     </div>
   );
 }
