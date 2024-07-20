@@ -2,17 +2,21 @@
 import { Button, Container } from "@mui/material";
 import AccordionPago from "./accordion-pago";
 import { useState } from "react";
+import Boton from "../../boton";
 
 function Pago(
     { checkin, checkout, person, suite, night, price }
 ) {
 
-    const [ totalPrice, setPrice ] = useState(price);
-
     // TODO definir logica de negocio, el precio sube si se queda mas noche? o tambien influye el numero de personas
     const onChangePrice = ( night )=>{
         // setPrice(  );
         console.log('cambiar precio')
+    }
+
+    const onPagar =()=>{
+
+        alert(`${checkin}, ${checkout}, ${person}, ${suite}, ${night}, ${price}` );
     }
 
     return (
@@ -60,11 +64,7 @@ function Pago(
                         </div>
                     </div>
                     <div className="flex justify-end pt-4">
-                        <Button
-                            variant="contained"
-                        >
-                            Pagar
-                        </Button>
+                        <Boton text='Pagar' handledClick={onPagar}/>
                     </div>
                 </section>
             </main>
