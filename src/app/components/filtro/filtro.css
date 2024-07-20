@@ -1,0 +1,22 @@
+
+.contain-filtro{
+    position: absolute;
+    left: -250px;
+}
+
+
+@keyframes appearLeft {
+    0%{
+        left: -250px;
+    }
+    100%{
+        left: 0;
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    .contain-filtro {
+        position: relative;
+        left: 0;
+    }
+}
