@@ -23,7 +23,9 @@ function LogoPerfil() {
     };
 
     return (
-        <Container maxWidth="xl" className='flex justify-between pt-4'>
+        <Container maxWidth="xl" sx={{
+            display: 'flex', justifyContent: 'space-between', paddingTop: '1rem'
+        }}>
             <Typography
                 variant="h6"
                 noWrap
