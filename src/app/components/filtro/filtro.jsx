@@ -11,7 +11,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 const Item = styled('div')(({ theme }) => ({
-    
     padding: theme.spacing(1),
     textAlign: 'center',
     borderRadius: 4,
@@ -20,41 +19,47 @@ const Item = styled('div')(({ theme }) => ({
     fontWeight: '700',
   }));
 
-export default function Filtro({ toogleMenu }) {
+export default function Filtro({ isOpen, changeFilter, listOptions }) {
 
+    let styles;
+    if(typeof isOpen == 'boolean'){
+        styles = isOpen ?'filter-appearLeft' : 'filter-desaparecer';
+    }
+    
 
-  return (
+    return (
     <React.Fragment>
-        <div className='contain-filtro'>
+        <div className={`${styles} contain-filtro`}>
             <Box sx={{ border: '2px solid grey', backgroundColor: 'var(--principal)', }}
-                width={250}
-                height={700} display="flex" flexDirection={'column'}
+                display="flex" flexDirection={'column'}
                 alignItems="start" gap={4} p={3} spacing={4}
             >
-                <Stack direction="column"
+                <Stack direction="column" sx={{
+                    width: '100%'
+                }}
                     gap={4}
                 >
-                    <Item>Filtro 1
-                        <FormGroup>
-                            <FormControlLabel control={<Checkbox defaultChecked />} label="Opción 1" />
-                            <FormControlLabel control={<Checkbox />} label="Opción 2" />
-                            <FormControlLabel control={<Checkbox />} label="Opción 3" />
-                        </FormGroup>
-                    </Item>
-                    <Item>Filtro 2
-                        <FormGroup>
-                            <FormControlLabel control={<Checkbox defaultChecked />} label="Opción 1" />
-                            <FormControlLabel control={<Checkbox />} label="Opción 2" />
-                            <FormControlLabel control={<Checkbox />} label="Opción 3" />
-                        </FormGroup>
-                    </Item>
-                    <Item>Filtro 3
-                        <FormGroup>
-                            <FormControlLabel control={<Checkbox defaultChecked />} label="Opción 1" />
-                            <FormControlLabel control={<Checkbox />} label="Opción 2" />
-                            <FormControlLabel control={<Checkbox />} label="Opción 3" />
-                        </FormGroup>
-                    </Item>
+                    {listOptions.map( ({ title, options }) => (
+                        <Item key={title}>
+                            <h2 className='text-start text-2xl pb-4'>{title}</h2>
+                            <hr/>
+
+                            {
+                                options.map( ({ name, checked })=> (
+                                    <FormGroup key={name}>
+                                        <FormControlLabel control={
+                                            <Checkbox checked={ checked } name={name} 
+                                                onChange={changeFilter}
+                                                color='info'
+                                            />
+                                        } label={name} />
+                                    </FormGroup>
+                                ))
+                            }
+
+                            <hr/>
+                        </Item>
+                    ))}
                 </Stack>
             </Box>
 
