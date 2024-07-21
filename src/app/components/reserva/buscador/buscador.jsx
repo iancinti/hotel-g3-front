@@ -8,20 +8,23 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Container } from '@mui/material';
 
-import Boton from '../../boton';
 import { Validations } from '@/app/utils/validations';
 
+import Boton from '../../boton';
+import dayjs from 'dayjs';
+
 const dataForm = {
-    checkin: '',
-    checkout: '',
+    checkin: dayjs(),
+    checkout: dayjs(),
     room: '2',
     person: '3'
 }
 
-export default function Buscador() {
+export default function Buscador({ handledSearch }) {
     const [form, setForm] = React.useState(dataForm);
     const maxRooms = 6;
     const maxPerson = 6;
+    const dateFormat = 'DD/MM/YYYY';
 
     const onSetForm = (name, value) => {
         setForm({
@@ -32,7 +35,11 @@ export default function Buscador() {
 
     const onsubmit = () => {
         if (Validations.allFieldRequired(form)) {
-            alert('Buscando');
+            const checkin = form.checkin.format(dateFormat);
+            const checkout = form.checkout.format(dateFormat);
+            const { room, person } = form;
+
+            handledSearch({ checkin, checkout, room, person });
         }
     }
 
@@ -57,7 +64,7 @@ export default function Buscador() {
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker
                                 sx={styleDatePicker}
-                                format='DD/MM/YYYY'
+                                format={dateFormat}
                                 selected={form.checkin}
                                 onChange={(date)=> onSetForm( 'checkin', date ) }
                             />
@@ -68,7 +75,7 @@ export default function Buscador() {
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker
                                 sx={styleDatePicker}
-                                format='DD/MM/YYYY'
+                                format={dateFormat}
                                 selected={form.checkout}
                                 onChange={(date) => onSetForm('checkout', date)}
                             />
