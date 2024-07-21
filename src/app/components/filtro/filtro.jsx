@@ -45,8 +45,8 @@ export default function Filtro({ isOpen, changeFilter, listOptions }) {
                             <hr/>
 
                             {
-                                options.map( ({ name, checked })=> (
-                                    <FormGroup key={name}>
+                                options.map( ({ id, name, checked })=> (
+                                    <FormGroup key={id}>
                                         <FormControlLabel control={
                                             <Checkbox checked={ checked } name={name} 
                                                 onChange={changeFilter}
