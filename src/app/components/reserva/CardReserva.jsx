@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -20,7 +19,7 @@ export default function CardReserva({ name, facility, price, image }) {
 
           <CardContent style={{ display: "flex", flexDirection: "row", justifyContent: "center", width: "100%", height: '100%' }}>
               <div style={{ display: 'flex', width: 'fit-content' }}>
-                  <img src={image} alt="Habitación doble" />
+                  <img src={image} alt="Habitación" />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '1.5em', gap: '1.5em', width: '30em' }} >
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
