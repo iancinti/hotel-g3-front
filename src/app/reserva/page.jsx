@@ -3,41 +3,41 @@ import { Container } from "@mui/material";
 import Filtro from "../components/filtro/filtro";
 import CardReserva from "../components/reserva/CardReserva";
 import Buscador from "../components/reserva/buscador/buscador";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import TagsFiltro from "../components/filtro/tagsFiltro";
 import { listRooms } from "./listRooms";
-
-const listOptions = [
-    {
-        title: 'Servicio',
-        options: [
-            { name: 'Wifi', checked: false },
-            { name: 'Bar', checked: false },
-            { name: 'Comida', checked: false },
-            { name: 'TV', checked: false },
-            { name: 'Estacionamiento', checked: false },
-        ]
-    }, {
-        title: 'Habitaciones',
-        options: [
-            { name: 'Habitacion simple', checked: false },
-            { name: 'Suite principal', checked: false },
-            { name: '3 habitaciones', checked: false },
-            { name: '4 habitaciones', checked: false },
-        ]
-    }
-]
+import { getAllServices } from "@/service/services";
 
 function Reserva() {
 
     const router = useRouter();
     const [rooms, setRooms] = useState(listRooms);
-    const [optionsFilter, setOptionsFilter] = React.useState(listOptions);
+    const [optionsFilter, setOptionsFilter] = React.useState([]);
 
     const [ tags, setTags ] = useState([]);
     const [ isOpenFilter, setOpenFilter ] = useState( null );
-    
+
+    useEffect(() => {
+        const fetchItems = async () => {
+            try {
+                const data = await getAllServices();
+                setOptionsFilter([optionsFilterDto('Servicio', data)]);
+            } catch (error) {
+                console.error('Error al obtener los items:', error);
+            }
+        };
+
+        fetchItems();
+    }, []);
+
+    const optionsFilterDto = ( title, data ) =>{
+        return {
+            title,
+            options: data.map(({ id, name }) => ({ id, name, checked: false }))
+        }
+    }
+
     const onChangeFilter =(event)=>{
         const { name, checked } = event.target;
         updateFilterAndTags( name, checked );
@@ -71,15 +71,7 @@ function Reserva() {
     }
 
     const loadRooms =( tags )=>{
-        // ! Cambiar por llamada a Back para traer listado
-        setRooms( ()=>{
-            return rooms.filter((room) => {
-                if (room.facility.some(facility => tags.includes(facility))) {
-                    return room;
-                }
-            })
-        });
-        
+        // ! Llamada a Back para traer listado
     }
 
     return (
