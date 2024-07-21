@@ -4,7 +4,7 @@ import Footer from "../components/footer";
 import Header from "../components/header/header";
 import CardImage from '../components/card-image/card-image.jsx';
 
-export default function GalleryLayout({ children }) {
+export default function AttractionsLayout({ children }) {
     return (
         <html lang="es">
             <body>
