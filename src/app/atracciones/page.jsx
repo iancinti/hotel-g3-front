@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Typography } from '@mui/material';
 
 
-function Gallery() {
+function Attractions() {
       const h1style = {
         textAlign: 'center',
         fontSize: '2.5em',
