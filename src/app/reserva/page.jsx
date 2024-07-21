@@ -4,33 +4,65 @@ import Filtro from "../components/filtro/filtro";
 import CardReserva from "../components/reserva/CardReserva";
 import Buscador from "../components/reserva/buscador/buscador";
 import React, { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import TagsFiltro from "../components/filtro/tagsFiltro";
+import { listRooms } from "./listRooms";
 
-const listRooms = [
+const listOptions = [
     {
-        id: '1',
-        name: 'Cuarto 1',
-        facility: ['wifi','comida' ],
-        price: '$1.830',
-        image: 'images/reserva.jpg'
-    },{
-        id: '2',
-        name: 'Cuarto 2',
-        facility: ['piscina', 'bar'],
-        price: '$1.500',
-        image: '/images/Imagen.svg'
+        title: 'Servicio',
+        options: [
+            { name: 'Wifi', checked: false },
+            { name: 'Bar', checked: false },
+            { name: 'Comida', checked: false },
+            { name: 'TV', checked: false },
+            { name: 'Estacionamiento', checked: false },
+        ]
+    }, {
+        title: 'Habitaciones',
+        options: [
+            { name: 'Habitacion simple', checked: false },
+            { name: 'Suite principal', checked: false },
+            { name: '3 habitaciones', checked: false },
+            { name: '4 habitaciones', checked: false },
+        ]
     }
 ]
 
 function Reserva() {
 
     const router = useRouter();
-    const searchParams = useSearchParams();
     const [rooms, setRooms] = useState(listRooms);
+    const [optionsFilter, setOptionsFilter] = React.useState(listOptions);
 
-    const onChangeFilter =()=>{
+    const [ tags, setTags ] = useState([]);
+    const [ isOpenFilter, setOpenFilter ] = useState( null );
+    
+    const onChangeFilter =(event)=>{
+        const { name, checked } = event.target;
+        updateFilterAndTags( name, checked );
+    }
 
+    const updateFilterAndTags =(name, checked)=>{
+        const updatedOptionsFilter = optionsFilter.map((item) => ({
+            ...item,
+            options: item.options.map((option) =>
+                option.name === name ? { ...option, checked: checked } : option
+            )
+        }));
+
+        setOptionsFilter(updatedOptionsFilter);
+
+        if (checked) setTags(()=>{
+            const newTags = [...tags, name];
+            loadRooms( newTags );
+            return newTags;
+        })
+        else setTags(value =>{
+            const newTags = [...value.filter(f => f !== name)];
+            loadRooms( newTags );
+            return newTags;
+        });
     }
 
     const onSearchRooms = ({ checkin, checkout, room, person })=>{
@@ -38,17 +70,30 @@ function Reserva() {
         router.push(`/reserva?${params}`);
     }
 
+    const loadRooms =( tags )=>{
+        // ! Cambiar por llamada a Back para traer listado
+        setRooms( ()=>{
+            return rooms.filter((room) => {
+                if (room.facility.some(facility => tags.includes(facility))) {
+                    return room;
+                }
+            })
+        });
+        
+    }
 
     return (
         <React.Fragment>
             <Buscador handledSearch={onSearchRooms}></Buscador>
             <Container maxWidth='xl' sx={{
-                paddingY:'3rem'
+                paddingY:'2.5rem'
             }}>
-                <TagsFiltro maxWidth='xl'></TagsFiltro>
-                <div className="flex gap-12">
-                    <Filtro></Filtro>
-                    <div className="grid gap-12">
+                <TagsFiltro maxWidth='xl' toogleFiltro={() => setOpenFilter(!isOpenFilter)}
+                    tags={tags} onDeleteTag={(name) => updateFilterAndTags(name, false)}
+                />
+                <div className="flex gap-10 relative justify-center">
+                    <Filtro isOpen={isOpenFilter} changeFilter={onChangeFilter} listOptions={optionsFilter}></Filtro>
+                    <div className="grid gap-10">
                         {
                             rooms.map(({ id, name, facility, price, image }) => (
                                 <CardReserva
