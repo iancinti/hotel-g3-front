@@ -10,8 +10,10 @@ const request = async (endpoint, options = {}) => {
 };
 
 export const getAllAtracciones = () => request('/attractions');
-// export const getItem = (id) => request(`/items/${id}`);
-// export const createItem = (data) => request('/items', {
+
+// export const getAtraccionById = (id) => request(`/attractions/${id}`);
+
+// export const createAtraccion = (data) => request('/attractions', {
 //     method: 'POST',
 //     headers: {
 //         'Content-Type': 'application/json',
