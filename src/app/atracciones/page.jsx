@@ -25,4 +25,4 @@ function Attractions() {
  
    
 
-export default Gallery;
+export default Attractions;
