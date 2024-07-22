@@ -9,6 +9,7 @@ import { styled } from '@mui/system';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import FilterSkeleton from '@/skeleton-loaders/filterSkeleton';
 
 const Item = styled('div')(({ theme }) => ({
     padding: theme.spacing(1),
@@ -29,8 +30,8 @@ export default function Filtro({ isOpen, changeFilter, listOptions }) {
 
     return (
     <React.Fragment>
-        <div className={`${styles} contain-filtro`}>
-            <Box sx={{ border: '2px solid grey', backgroundColor: 'var(--principal)', }}
+        <div className={`${styles} contain-filtro`} style={{ backgroundColor: 'var(--principal)', border: '2px solid grey' }}>
+            <Box
                 display="flex" flexDirection={'column'}
                 alignItems="start" gap={4} p={3} spacing={4}
             >
@@ -39,27 +40,33 @@ export default function Filtro({ isOpen, changeFilter, listOptions }) {
                 }}
                     gap={4}
                 >
-                    {listOptions.map( ({ title, options }) => (
-                        <Item key={title}>
-                            <h2 className='text-start text-2xl pb-4'>{title}</h2>
-                            <hr/>
+                    {listOptions && listOptions.length > 0
+                            ? listOptions.map(({ title, options }) => (
+                                <Item key={title}>
+                                    <h2 className='text-start text-4xl pb-8'>{title}</h2>
+                                    <hr />
 
-                            {
-                                options.map( ({ id, name, checked })=> (
-                                    <FormGroup key={id}>
-                                        <FormControlLabel control={
-                                            <Checkbox checked={ checked } name={name} 
-                                                onChange={changeFilter}
-                                                color='info'
-                                            />
-                                        } label={name} />
-                                    </FormGroup>
-                                ))
-                            }
+                                    {
+                                        options.map(({ id, name, checked }) => (
+                                            <FormGroup key={id} sx={{
+                                                marginY: '1rem'
+                                            }}>
+                                                <FormControlLabel control={
+                                                    <Checkbox checked={checked} name={name}
+                                                        onChange={changeFilter}
+                                                        color='info'
+                                                    />
+                                                } label={name} />
+                                            </FormGroup>
+                                        ))
+                                    }
 
-                            <hr/>
-                        </Item>
-                    ))}
+                                    <hr />
+                                </Item>
+                            ))
+
+                            : <FilterSkeleton/>
+                    }
                 </Stack>
             </Box>
 

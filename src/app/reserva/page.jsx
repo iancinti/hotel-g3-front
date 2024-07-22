@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import TagsFiltro from "../components/filtro/tagsFiltro";
 import { listRooms } from "./listRooms";
 import { getAllServices } from "@/service/services";
+import CardReservaSkeleton from "@/skeleton-loaders/cardReservaSkeleton";
 
 function Reserva() {
 
@@ -28,7 +29,7 @@ function Reserva() {
             }
         };
 
-        // fetchItems();
+        fetchItems();
     }, []);
 
     const optionsFilterDto = ( title, data ) =>{
@@ -86,8 +87,8 @@ function Reserva() {
                 <div className="flex gap-10 relative justify-center">
                     <Filtro isOpen={isOpenFilter} changeFilter={onChangeFilter} listOptions={optionsFilter}></Filtro>
                     <div className="grid gap-10">
-                        {
-                            rooms.map(({ id, name, facility, price, image }) => (
+                        { (rooms && rooms.length > 0)
+                            ? rooms.map(({ id, name, facility, price, image }) => (
                                 <CardReserva
                                     key={id}
                                     id={id}
@@ -97,6 +98,13 @@ function Reserva() {
                                     image={image}
                                 />
                             ))
+                            :
+                            <>
+                                <CardReservaSkeleton></CardReservaSkeleton>
+                                <CardReservaSkeleton></CardReservaSkeleton>
+                                <CardReservaSkeleton></CardReservaSkeleton>
+                                <CardReservaSkeleton></CardReservaSkeleton>
+                            </>
                         }
                     </div>
                 </div>
