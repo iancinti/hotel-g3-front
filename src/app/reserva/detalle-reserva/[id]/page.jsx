@@ -34,6 +34,7 @@ function DetalleReserva() {
     }, [id]);
     
     if (!room) {
+        // TODO insertar pantalla de carga
         return <div>Loading...</div>;
     }
 
