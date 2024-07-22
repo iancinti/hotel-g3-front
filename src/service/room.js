@@ -9,12 +9,12 @@ const request = async (endpoint, options = {}) => {
     return response.json();
 };
 
-const path = '/Services';
-export const getAllServices = () => request( path );
+const path = '/rooms'
+export const getAllRooms = () => request( path );
 
-// export const getServiceById = (id) => request(`${path}/${id}`);
+export const getRoomById = (id) => request(`${path}/${id}`);
 
-// export const createService = (data) => request(`${path}`, {
+// export const createService = (data) => request('/Services', {
 //     method: 'POST',
 //     headers: {
 //         'Content-Type': 'application/json',

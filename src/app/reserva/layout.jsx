@@ -8,13 +8,11 @@ export const metadata = {
 
 function ReservaLayout({ children }) {
     return (
-        <html lang="en">
-            <body>
-                <Header bannerImg='images/banners/banner-reserva.png'></Header>
-                {children}
-                <Footer></Footer>
-            </body>
-        </html>        
+        <>
+            <Header bannerImg='/images/banners/banner-reserva.png'></Header>
+            {children}
+            <Footer></Footer>
+        </>       
     );
 }
 
