@@ -18,6 +18,7 @@ export default function Carrousel  ({ initialImages , showRemoveButton = true}) 
     const carrouselStyle ={
         height: '40em',
         margin: '3em auto',
+        width: '40em',
     };
 
     const iconStyle = {
