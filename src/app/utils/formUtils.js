@@ -42,7 +42,7 @@ export class FormUtils {
     }
 
     static showInfoAllForm(
-        { inputs, spanError, message, key, isValid, form, fnOk }
+        { inputs, spanError, message, key, isValid, form }
     ) {
         for (let i = 0; i < inputs.length; i++) {
             if (key == inputs[i].name) {
@@ -65,9 +65,6 @@ export class FormUtils {
                 const span = document.getElementById(key);
                 span.style.display = 'none';
             }
-            setTimeout(() => {
-                fnOk()
-            }, 800);
         }
     }
 
