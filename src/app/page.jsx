@@ -1,90 +1,79 @@
-
-import CardImage from "./components/card-image/card-image";
+'use client';
+import * as React from 'react';
 import Header from "./components/header/header";
-import CardReserva from "./components/reserva/CardReserva";
+import Carrousel from '../components/carrousel';
+import Footer from './components/footer';
+import home1 from '../../public/images/homeimg/home1.jpg';
+import home3 from '../../public/images/homeimg/home3.jpg';
+import home2 from '../../public/images/homeimg/home2.jpg';
+import home4 from '../../public/images/homeimg/home4.jpg';
+import promo1 from '../../public/images/homeimg/promo1.jpg';
+import promo2 from '../../public/images/homeimg/promo2.jpg';
+import promo3 from '../../public/images/homeimg/promo3.jpg';
+import promo4 from '../../public/images/homeimg/promo4.jpg';
+import nos1 from '../../public/images/homeimg/nos1.jpg';
+import nos2 from '../../public/images/homeimg/nos2.jpg';
+import nos3 from '../../public/images/homeimg/nos3.jpg';
+import nos4 from '../../public/images/homeimg/nos4.jpg';
+import { Typography } from '@mui/material';
+
+
+
 
 
 
 function Home() {
+  const home = [
+    { src: home1 , alt: "Fotos del hotel", caption: "Nuestras instalaciones" },
+    { src: home2, alt: "Fotos del hotel", caption: "Nuestras instalaciones" },
+    { src: home3, alt: "Fotos del hotel", caption: "Nuestras instalaciones" },
+    { src: home4, alt: "Fotos del hotel", caption: "Nuestras instalaciones" },
+  ];
+  const promo = [
+    { src: promo1 , alt: "Fotos del hotel", caption: "Promociones" },
+    { src: promo2, alt: "Fotos del hotel", caption: "Promociones" },
+    { src: promo3, alt: "Fotos del hotel", caption: "Promociones" },
+    { src: promo4, alt: "Fotos del hotel", caption: "Promociones" },
+  ];
+  const nos = [
+    { src: nos1 , alt: "Fotos del hotel", caption: "Nosotros" },
+    { src: nos2, alt: "Fotos del hotel", caption: "Nosotros" },
+    { src: nos3, alt: "Fotos del hotel", caption: "Nosotros" },
+    { src: nos4, alt: "Fotos del hotel", caption: "Nosotros" },
+  ];
   return (
     <div>
 
       <Header bannerImg='/images/banners/banner-home.jpg'></Header>
-
-      {/* <div className="flex justify-center gap-4 p-4 flex-wrap">
-        <CardImage
-          bgColor='white'
-          title='Rio azul'
-          bgColorMain='gray'
-          srcImage='images/atracciones/lugar1.png'
-          direction='aslkdfj'
-          distancia='A 1.2Km de nuestro hotel'
-        ></CardImage>
-        <CardImage
-          bgColor='white'
-          title='Puente'
-          bgColorMain='gray'
-          srcImage='images/atracciones/lugar2.png'
-          direction='aslkdfj'
-          distancia='A 7.3Km de nuestro hotel'
-        ></CardImage>
-        <CardImage
-          bgColor='white'
-          title='Estacion de trenes'
-          bgColorMain='gray'
-          srcImage='images/atracciones/lugar3.png'
-          direction='aslkdfj'
-          distancia='A 1.3Km de nuestro hotel'
-        ></CardImage>
-        <CardImage
-          bgColor='white'
-          title='Pasillo turistico'
-          bgColorMain='gray'
-          srcImage='images/atracciones/lugar4.png'
-          direction='aslkdfj'
-          distancia='A 1.3Km de nuestro hotel'
-        ></CardImage>
-        <CardImage
-          bgColor='white'
-          title='Botes'
-          bgColorMain='gray'
-          srcImage='images/atracciones/lugar5.png'
-          direction='aslkdfj'
-          distancia='A 1.7Km de nuestro hotel'
-        ></CardImage>
-        <CardImage
-          bgColor='white'
-          title='Capilla'
-          bgColorMain='gray'
-          srcImage='images/atracciones/lugar6.png'
-          direction='aslkdfj'
-          distancia='A 3Km de nuestro hotel'
-        ></CardImage>
-        <CardImage
-          bgColor='white'
-          title='Plaza'
-          bgColorMain='gray'
-          srcImage='images/atracciones/lugar7.png'
-          direction='aslkdfj'
-          distancia='A 3.2Km de nuestro hotel'
-        ></CardImage>
-        <CardImage
-          bgColor='white'
-          title='Jarnin'
-          bgColorMain='gray'
-          srcImage='images/atracciones/lugar8.png'
-          direction='aslkdfj'
-          distancia='A 20.3Km de nuestro hotel'
-        ></CardImage>
-        <CardImage
-          bgColor='white'
-          title='Fabelas'
-          bgColorMain='gray'
-          srcImage='images/atracciones/lugar9.png'
-          direction='aslkdfj'
-          distancia='A .8Km de nuestro hotel'
-        ></CardImage>
-      </div> */}
+      <section>
+        <div>
+          <h1>EL HOTEL</h1>
+          <Typography>Situado en las afueras de la ciudad, Hotel G3 es la excusa perfecta para el relax, confort y disfrutar. Una experiencia gratificante, que hará que quiera volver. Profesionalismo, seguridad y confort, son nuestras premisas.</Typography>
+        </div>
+        <div>
+        <Carrousel initialImages={home} />
+        </div>
+      </section>
+      <section>
+        <div>
+          <h1>PROMOCIONES</h1>
+          <Typography>No te pierdas las promociones exclusivas que tenemos para estas vacaciones de invierno. Además, contamos habitualmente, con descuentos exclusivos para clientes y combos imperdibles.</Typography>
+        </div>
+        <div>
+        <Carrousel initialImages={promo} />
+        </div>
+      </section>
+      <section>
+        <div>
+          <h1>NOSOTROS</h1>
+          <Typography>Hotel G3, fue fundado en 1956, por un grupo de socios. Desde entonces, abre sus puertas al público ofreciendo excelencia en todos sus servicios.
+          Nuestro restaurante cuenta con la mejor calificación por expertos.</Typography>
+        </div>
+        <div>
+        <Carrousel initialImages={nos} />
+        </div>
+      </section>
+      <Footer></Footer>
     </div>
   );
 }
