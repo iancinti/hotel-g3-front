@@ -16,9 +16,9 @@ export default function DrawerComponent({ openDrawer = false, handleCloseNavMenu
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
             <List>
                 {menus.map(({ path, name }) => (
-                    <ListItem disablePadding>
+                    <ListItem disablePadding key={path}>
                         <ListItemButton>
-                            <ActiveLink path={path} key={path}>
+                            <ActiveLink path={path}>
                                 {name}
                             </ActiveLink>
                         </ListItemButton>
