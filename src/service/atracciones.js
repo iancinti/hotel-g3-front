@@ -9,11 +9,12 @@ const request = async (endpoint, options = {}) => {
     return response.json();
 };
 
-export const getAllAtracciones = () => request('/attractions');
+const path = '/attractions';
+export const getAllAtracciones = () => request( path );
 
-// export const getAtraccionById = (id) => request(`/attractions/${id}`);
+// export const getAtraccionById = (id) => request(`${path}/${id}`);
 
-// export const createAtraccion = (data) => request('/attractions', {
+// export const createAtraccion = (data) => request(`${path}`, {
 //     method: 'POST',
 //     headers: {
 //         'Content-Type': 'application/json',
