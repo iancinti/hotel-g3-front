@@ -8,13 +8,13 @@ import './card-image.css';
 
 function CardImage({ bgColor, bgColorMain = '#D9D9D9', srcImage, title, distancia, direction }) {
     return(
-        <article className='artc-contain'
+        <article className='artc-contain hover-img'
             style={{
                 backgroundColor: bgColor
             }}   
         >
             <header className='artc-header'>
-                <img className='artc-image' src={srcImage} alt="image-portada" />
+                <img className='artc-image image-rotate' src={srcImage} alt="image-portada" />
             </header>
             <main className='artc-main' style={{
                 backgroundColor: bgColorMain
