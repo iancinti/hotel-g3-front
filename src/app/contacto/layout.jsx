@@ -8,13 +8,11 @@ export const metadata = {
 
 export default function ContactLayout({ children }) {
     return (
-        <html lang="en">
-            <body>
-                <Header bannerImg='images/banners/banner-contact.png'></Header>
-                {children}
-                <Footer></Footer>
-            </body>
-        </html>
+        <>
+            <Header bannerImg='images/banners/banner-contact.png'></Header>
+            {children}
+            <Footer></Footer>
+        </>
     );
 
 }

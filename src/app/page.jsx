@@ -17,6 +17,7 @@ import nos3 from '../../public/images/homeimg/nos3.jpg';
 import nos4 from '../../public/images/homeimg/nos4.jpg';
 import { Typography } from '@mui/material';
 import { fontFamily } from '@mui/system';
+import Buscador from './components/reserva/buscador/buscador';
 
 
 function Home() {
@@ -52,6 +53,7 @@ function Home() {
   };
   const styleDiv2={
     width: '38em',
+    marginBottom: '4em'
   };
     
   const h1style = {
@@ -59,7 +61,7 @@ function Home() {
     fontSize: '2.5em',
     color: '#081928',
     fontWeight: '700',
-    margin: '2em auto',
+    marginBottom: '2em',
   };
   const textStyle ={
     textAlign: 'left',
@@ -102,6 +104,7 @@ function Home() {
         <Carrousel initialImages={nos} showRemoveButton={false}/>
         </div>
       </section>
+      <Buscador></Buscador>
       <Footer></Footer>
     </div>
   );
