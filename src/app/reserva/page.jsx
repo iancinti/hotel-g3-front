@@ -28,7 +28,7 @@ function Reserva() {
             }
         };
 
-        fetchItems();
+        // fetchItems();
     }, []);
 
     const optionsFilterDto = ( title, data ) =>{
@@ -90,6 +90,7 @@ function Reserva() {
                             rooms.map(({ id, name, facility, price, image }) => (
                                 <CardReserva
                                     key={id}
+                                    id={id}
                                     name={name}
                                     facility={facility}
                                     price={price}
