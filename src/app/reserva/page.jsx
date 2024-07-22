@@ -1,36 +1,47 @@
 "use client"
-import { Container } from "@mui/material";
+import { Container, Pagination } from "@mui/material";
 import Filtro from "../components/filtro/filtro";
 import CardReserva from "../components/reserva/CardReserva";
 import Buscador from "../components/reserva/buscador/buscador";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import TagsFiltro from "../components/filtro/tagsFiltro";
-import { listRooms } from "./listRooms";
 import { getAllServices } from "@/service/services";
 import CardReservaSkeleton from "@/skeleton-loaders/cardReservaSkeleton";
+import { getAllRooms } from "@/service/booking";
 
 function Reserva() {
 
+    const pageSize = 4;
     const router = useRouter();
-    const [rooms, setRooms] = useState(listRooms);
+    const [rooms, setRooms] = useState(null);
     const [optionsFilter, setOptionsFilter] = React.useState([]);
+    const [ loading, setLoading ] = useState(true);
 
     const [ tags, setTags ] = useState([]);
     const [ isOpenFilter, setOpenFilter ] = useState( null );
 
+    const [ page, setPage ] = useState( 1 );
+
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const data = await getAllServices();
-                setOptionsFilter([optionsFilterDto('Servicio', data)]);
+                setLoading( true );
+                const [ services, listRooms ] = await Promise.all([
+                    getAllServices(),
+                    getAllRooms(`pageNumber=${page}&pageSize=${pageSize}`)
+                ]);
+                setRooms(listRooms);
+                setOptionsFilter([optionsFilterDto('Servicio', services)]);
             } catch (error) {
                 console.error('Error al obtener los items:', error);
+            }finally{
+                setLoading(false);
             }
         };
 
         fetchItems();
-    }, []);
+    }, [page]);
 
     const optionsFilterDto = ( title, data ) =>{
         return {
@@ -75,6 +86,10 @@ function Reserva() {
         // ! Llamada a Back para traer listado
     }
 
+    const onChangePagination =(e, value)=>{
+        setPage( value );
+    }
+
     return (
         <React.Fragment>
             <Buscador handledSearch={onSearchRooms}></Buscador>
@@ -85,17 +100,13 @@ function Reserva() {
                     tags={tags} onDeleteTag={(name) => updateFilterAndTags(name, false)}
                 />
                 <div className="flex gap-10 relative justify-center">
-                    <Filtro isOpen={isOpenFilter} changeFilter={onChangeFilter} listOptions={optionsFilter}></Filtro>
+                    <Filtro isOpen={isOpenFilter} changeFilter={onChangeFilter} listOptions={optionsFilter} loading={loading}></Filtro>
                     <div className="grid gap-10">
-                        { (rooms && rooms.length > 0)
-                            ? rooms.map(({ id, name, facility, price, image }) => (
+                        { (!loading)
+                            ? rooms.map((room, index) => (
                                 <CardReserva
-                                    key={id}
-                                    id={id}
-                                    name={name}
-                                    facility={facility}
-                                    price={price}
-                                    image={image}
+                                    key={index}
+                                    room={room}
                                 />
                             ))
                             :
@@ -106,6 +117,15 @@ function Reserva() {
                                 <CardReservaSkeleton></CardReservaSkeleton>
                             </>
                         }
+                        <div className="flex justify-center">
+                            <Pagination
+                                page={page}
+                                count={3}
+                                variant="outlined"
+                                shape="rounded"
+                                onChange={onChangePagination}
+                            />
+                        </div>
                     </div>
                 </div>
 
