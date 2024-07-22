@@ -21,6 +21,21 @@ const settings = [{
 
 function LogoPerfil() {
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [ srcAvatar, setSrcAvatar ] = React.useState('/images/default-user.jpg');
+
+    React.useEffect(()=>{
+        // peticion para traer el avatar del usuario
+        // const fetchAvatar = async () => {
+        //     try {
+        //         const data = await getAvatar();
+        //         setSrcAvatar(data);
+        //     } catch (error) {
+        //         console.error('Error al obtener el avatar:', error);
+        //     }
+        // };
+
+        // fetchAvatar();
+    },[]);
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -67,7 +82,7 @@ function LogoPerfil() {
                 }}>
                 <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar alt="Remy Sharp" src="/images/default-user.jpg" />
+                        <Avatar alt="Remy Sharp" src={srcAvatar} />
                     </IconButton>
                 </Tooltip>
                 <Menu
