@@ -8,13 +8,12 @@ export const metadata = {
 
 function MiPerfilLayout({ children }) {
     return (
-        <html lang="en">
-            <body>
+        <>
                 <Header></Header>
                 { children }
                 <Footer></Footer>
-            </body>
-        </html>
+           
+        </>
     );
 }
 

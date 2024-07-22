@@ -13,6 +13,7 @@ import triple1 from '../../../public/images/gallery/triple1.jpg';
 import triple2 from '../../../public/images/gallery/triple2.jpg';
 import triple3 from '../../../public/images/gallery/triple3.jpg';
 import { Typography } from '@mui/material';
+import Buscador from '../components/reserva/buscador/buscador';
 
 function Gallery() {
     const simple = [
@@ -52,6 +53,7 @@ function Gallery() {
             <Carrousel initialImages={doble} />
             <h2 style={h2style}>SUITE TRIPLE</h2>
             <Carrousel initialImages={triple} />
+            <Buscador></Buscador>
         </div>
     );
 }; 

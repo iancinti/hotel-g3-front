@@ -6,8 +6,7 @@ import CardImage from '../components/card-image/card-image.jsx';
 
 export default function AttractionsLayout({ children }) {
     return (
-        <html lang="es">
-            <body>
+        <>
                 <Header backgroundColor="var(--fondo)"></Header>
                 {children}
                 <div>
@@ -87,7 +86,7 @@ export default function AttractionsLayout({ children }) {
                     </div>}
                 </div>
                 <Footer></Footer>
-            </body>
-        </html>
+         
+        </>
     );
 }

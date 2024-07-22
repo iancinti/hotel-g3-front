@@ -29,12 +29,16 @@ const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: "#E6F1FC"
     }
 
+
 )); 
+const styleFooter ={
+    marginTop: '4em',
+};
 
 const Footer = () => {
     return (
         
-        <div >
+        <div style={styleFooter}>
             <ThemeProvider theme={theme} >
                 <CssBaseline />
                 <Box sx={{ flexGrow: 1 }}>
