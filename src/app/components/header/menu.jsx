@@ -82,12 +82,6 @@ export default function MenuComponent() {
                             textDecoration: 'none',
                         }}
                     >
-                        <img src="/images/logo.png" alt=""
-                            style={{
-                                width: '85px',
-                                height: '85px',
-                                borderRadius: '7px'
-                            }} />
                     </Typography>
                     <Box sx={{ 
                         flexGrow: 1, 
