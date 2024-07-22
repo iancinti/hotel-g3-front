@@ -1,6 +1,5 @@
 "use client"
 
-import { getRoomById } from "@/service/room";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { listRooms } from "../../listRooms";

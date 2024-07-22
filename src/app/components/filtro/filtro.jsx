@@ -20,7 +20,7 @@ const Item = styled('div')(({ theme }) => ({
     fontWeight: '700',
   }));
 
-export default function Filtro({ isOpen, changeFilter, listOptions }) {
+export default function Filtro({ isOpen, changeFilter, listOptions, loading }) {
 
     let styles;
     if(typeof isOpen == 'boolean'){
@@ -40,7 +40,7 @@ export default function Filtro({ isOpen, changeFilter, listOptions }) {
                 }}
                     gap={4}
                 >
-                    {listOptions && listOptions.length > 0
+                        {(!loading && listOptions)
                             ? listOptions.map(({ title, options }) => (
                                 <Item key={title}>
                                     <h2 className='text-start text-4xl pb-8'>{title}</h2>

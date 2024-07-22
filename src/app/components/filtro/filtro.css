@@ -49,7 +49,7 @@ hr{
     }
 }
 
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 1200px) {
     .contain-filtro {
         position: relative;
         left: 0;

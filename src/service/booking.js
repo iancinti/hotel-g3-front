@@ -11,8 +11,8 @@ const request = async (endpoint, options = {}) => {
 
 const basePath = '/booking/rooms'
 export const getAllRooms = ( params ) =>{
-    const path = `${basePath}/${params}`;
-    request(path);
+    const path = `${basePath}?${params}`;
+    return request(path);
 }
 
 export const getRoomById = (id) => request(`${basePath}/${id}`);

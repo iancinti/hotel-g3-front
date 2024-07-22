@@ -17,13 +17,6 @@
     width: 100%;
     height: 100%;
     object-fit: conver;
-    scale: 1.2;
-    transform: rotate(10deg);
-    transition: all ease .4s;
-}
-.artc-contain:hover .artc-image {
-    scale: 1;
-    transform: rotate(0);
 }
 
 .artc-main{
