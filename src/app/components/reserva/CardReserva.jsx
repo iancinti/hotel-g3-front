@@ -20,6 +20,11 @@ export default function CardReserva({ id, name, facility, price, image }) {
     const redirectDetailRoom =()=>{
         router.push( `${pathDetail}/${id}` );
     }
+
+    const redirectBooking =()=>{
+        router.push('/payment');
+    }
+
     return (
       <Card sx={{
           width: { xl: '54em', md: '45em', sm: '30em' },
@@ -48,7 +53,7 @@ export default function CardReserva({ id, name, facility, price, image }) {
                   <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                       <Typography display="flex" fontSize={'1.25em'} fontWeight={'700'} component="div">
                           {price} / por noche
-                      </Typography><Boton text="Reservar"></Boton>
+                        </Typography><Boton text="Reservar" handledClick={redirectBooking}></Boton>
 
                   </div>
               </div>
