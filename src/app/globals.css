@@ -96,6 +96,17 @@ textarea:hover {
   color: rgb(54, 125, 45);
 }
 
+/*Estilos de imagen rotada*/
+.image-rotate{
+  scale: 1.2;
+  transform: rotate(10deg);
+  transition: all ease .4s;
+}
+.hover-img:hover .image-rotate {
+  scale: 1;
+  transform: rotate(0);
+}
+
 @media screen and (min-width: 620px) {
   .content-frm {
     padding: 0 50px;
