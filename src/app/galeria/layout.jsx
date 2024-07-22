@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function GalleryLayout({ children }) {
     return (
-        <html lang="es">
+        <html lang="en">
             <body>
                 <Header bannerImg={imagen.src}></Header>
                 {children}
