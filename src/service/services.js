@@ -9,7 +9,7 @@ const request = async (endpoint, options = {}) => {
     return response.json();
 };
 
-const path = '/Services';
+const path = '/service';
 export const getAllServices = () => request( path );
 
 // export const getServiceById = (id) => request(`${path}/${id}`);

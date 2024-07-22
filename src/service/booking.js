@@ -9,10 +9,13 @@ const request = async (endpoint, options = {}) => {
     return response.json();
 };
 
-const path = '/rooms'
-export const getAllRooms = () => request( path );
+const basePath = '/booking/rooms'
+export const getAllRooms = ( params ) =>{
+    const path = `${basePath}/${params}`;
+    request(path);
+}
 
-export const getRoomById = (id) => request(`${path}/${id}`);
+export const getRoomById = (id) => request(`${basePath}/${id}`);
 
 // export const createService = (data) => request('/Services', {
 //     method: 'POST',
