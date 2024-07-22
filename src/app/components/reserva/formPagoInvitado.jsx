@@ -25,7 +25,7 @@ const dataForm = {
     }
 }
 
-function FormPagoInvitado() {
+function FormPagoInvitado({ handlePayment }) {
     const router = useRouter();
     const [form, setForm] = useState(dataForm);
 
@@ -55,15 +55,12 @@ function FormPagoInvitado() {
 
         FormUtils.showInfoAllForm(
             {
-                form, inputs, spanError, message, key, isValid,
-                fnOk: goPago
+                form, inputs, spanError, message, key, isValid
             }
         );
-    }
 
-    const goPago = () => {
-        alert('Llendo a pagar');
-        // router.push('/ruta-pantalla-pago');
+        if(!isValid) return;
+        handlePayment();
     }
 
     return (
@@ -124,7 +121,7 @@ function FormPagoInvitado() {
                     <div className="frm-content-btn justify-center pt-4">
                         <Boton text='Ir a pagar' type='submit' form='formDataPersonal' />
                         <Boton text='Cancelar' handledClick={() => {
-                            router.push('/ruta');
+                            router.back();
                         }} />
                     </div>
                 </main>

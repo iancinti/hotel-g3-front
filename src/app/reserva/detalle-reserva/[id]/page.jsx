@@ -10,9 +10,12 @@ import { Icon } from '@iconify/react';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import DetailRoom from "./detail-room";
 import Boton from "@/app/components/boton";
+import { useRouter } from "next/navigation";
 
 
 function DetalleReserva() {
+
+    const router = useRouter();
     const { id } = useParams();
     const [ room, setRoom ] = useState(null);
 
@@ -58,7 +61,9 @@ function DetalleReserva() {
                     <Typography display="flex" fontSize={'1.25em'} fontWeight={'700'} component="div">
                         {room.price} / por noche
                     </Typography>
-                    <Boton text="Reservar"></Boton>
+                    <Boton text="Reservar" 
+                        handledClick={() => router.push('/payment')}
+                    />
                 </div>
             </div>
             <div>
