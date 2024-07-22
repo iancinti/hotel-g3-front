@@ -18,7 +18,6 @@ const ActiveLink = ({ children, path }) => {
             type="button"
             onClick={() => router.push(path)}
             style={{
-                color: "var('--principal')",
                 fontWeight: 'bold',
                 fontSize: '1.2em',
                 ...style,
