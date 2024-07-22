@@ -6,7 +6,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { FaTrash } from 'react-icons/fa';
 
-export default function Carrousel  ({ initialImages })  {
+export default function Carrousel  ({ initialImages , showRemoveButton = true})  {
     const [images, setImages] = useState(initialImages);
    
       
@@ -16,7 +16,6 @@ export default function Carrousel  ({ initialImages })  {
     };
     
     const carrouselStyle ={
-        width: '30%',
         height: '40em',
         margin: '3em auto',
     };
@@ -44,7 +43,9 @@ export default function Carrousel  ({ initialImages })  {
                             loading='eager'
                             priority={index === 0}
                         />
+                        {showRemoveButton && (
                         <FaTrash style={iconStyle} onClick={() => handleRemoveImage(index)} />
+                    )}
                         <p className="legend">{image.caption}</p>
                     </div>
                 ))}

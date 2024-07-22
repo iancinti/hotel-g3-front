@@ -8,10 +8,19 @@ import WifiIcon from '@mui/icons-material/Wifi';
 import { Icon } from '@iconify/react';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import Boton from '../boton';
+import { useRouter } from 'next/navigation';
 
 
-export default function CardReserva({ name, facility, price, image }) {
-  return (
+export default function CardReserva({ id, name, facility, price, image }) {
+
+    const router = useRouter();
+    const pathDetail = '/reserva/detalle-reserva';
+
+    
+    const redirectDetailRoom =()=>{
+        router.push( `${pathDetail}/${id}` );
+    }
+    return (
       <Card sx={{
           width: { xl: '54em', md: '45em', sm: '30em' },
           height: { xl: '25em', md: '20em', sm: '15em' }
@@ -19,11 +28,14 @@ export default function CardReserva({ name, facility, price, image }) {
 
           <CardContent style={{ display: "flex", flexDirection: "row", justifyContent: "center", width: "100%", height: '100%' }}>
               <div style={{ display: 'flex', width: 'fit-content' }}>
-                  <img src={image} alt="Habitación" />
+                  <img src={image} alt="Habitación" style={{ cursor: 'pointer' }}
+                        onClick={redirectDetailRoom}/>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '1.5em', gap: '1.5em', width: '30em' }} >
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
-                      <Typography display="flex" fontSize={'2.25em'} fontWeight={'700'} component="div">
+                      <Typography display="flex" fontSize={'2.25em'} fontWeight={'700'} component="div" sx={{
+                          cursor: 'pointer'
+                        }} onClick={redirectDetailRoom}>
                           {name}
                       </Typography>
                       <Typography display="flex" flexDirection={'row'} alignItems={'center'} gap={'0.5em'} >
