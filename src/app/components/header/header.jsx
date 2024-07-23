@@ -1,4 +1,5 @@
 import MenuComponent from "./menu";
+import Image from 'next/image'
 import './header.css'
 
 function Header({ bannerImg, backgroundColor }) {
@@ -9,9 +10,11 @@ function Header({ bannerImg, backgroundColor }) {
             <div className="hd-banner" style={{ backgroundColor: backgroundColor }}> 
                 
                 
-                <img
+                <Image
                     className="hd-banner-img"
                     src={bannerImg} alt="banner"
+                    width={100}
+                    height={100}
                     style={{ display }}
                 />
             </div>
