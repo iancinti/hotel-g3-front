@@ -15,7 +15,7 @@ export default function Carrousel  ({ initialImages , showRemoveButton = true}) 
     };
     
     const carrouselStyle ={
-        height: '40em',
+        height: 'auto',
         margin: '3em auto',
         width: '40em',
     };
@@ -33,7 +33,7 @@ export default function Carrousel  ({ initialImages , showRemoveButton = true}) 
         <div style={carrouselStyle}>
             <Carousel showThumbs={false}>
                 {images.map((image, index) => (
-                    <div key={index} style={{ position: 'relative', width: '100%', height: '40em' }}>
+                    <div key={index} style={{ position: 'relative', width: '100%', height: 'fit-content' }}>
                         <Image
                             src={image.src}
                             alt={image.alt}          
@@ -43,7 +43,7 @@ export default function Carrousel  ({ initialImages , showRemoveButton = true}) 
                             loading='eager'
                             priority={index === 0}
                             width={600}
-                            height={600}
+                            height={400}
                         />
                         {showRemoveButton && (
                         <FaTrash style={iconStyle} onClick={() => handleRemoveImage(index)} />
