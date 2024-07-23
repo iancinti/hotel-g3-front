@@ -6,7 +6,7 @@ import Carrousel from './components/carrousel';
 import Footer from './components/footer';
 import { Typography } from '@mui/material';
 import Buscador from './components/reserva/buscador/buscador';
-
+import AlertBoton from './components/alertBoton';
 
 function Home() {
   const home = [
@@ -22,17 +22,16 @@ function Home() {
     { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/promo4.jpg', alt: "Fotos del hotel", caption: "Promociones" },
   ];
   const nos = [
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/nos1.jpg' , alt: "Fotos del hotel", caption: "Nosotros" },
+    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/nos1.jpg' , alt: "Fotos del hotel", caption: "Nosotros"  },
     { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/nos2.jpg', alt: "Fotos del hotel", caption: "Nosotros" },
     { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/nos3.jpg', alt: "Fotos del hotel", caption: "Nosotros" },
     { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/nos4.jpg', alt: "Fotos del hotel", caption: "Nosotros" },
   ];
-  const styleSection ={
-    display: 'flex',
-    flexDirection: 'row',
-    margin: '0 4em',
-    justifyContent: 'space-around',
-  };
+  const styleSection =
+    { 
+      margin: '0 4em',
+      justifyContent: 'space-around',
+    };
   const styleDiv ={
     display: 'flex',
     flexDirection: 'column',
@@ -40,8 +39,9 @@ function Home() {
     width: '30em',
   };
   const styleDiv2={
-    width: '38em',
-    marginBottom: '4em'
+    width: '40em',
+    height: 'fit-content',
+    marginBottom: '4em',
   };
     
   const h1style = {
@@ -61,18 +61,18 @@ function Home() {
     <div>
       <Header bannerImg='banners/banner-home.jpg'></Header>
     
-      <section style={styleSection}>
+      <section className='homeSection' style={styleSection}>
         <div style={styleDiv}>
           <h1 style={h1style}>EL HOTEL</h1>
-          <Typography style={textStyle}> Situado en las afueras de la ciudad, Hotel G3 es la excusa perfecta para el relax, confort y disfrutar. Una experiencia gratificante, que hará que quiera volver. Profesionalismo, seguridad y confort, son nuestras premisas. </Typography>
+          <Typography style={textStyle} > Situado en las afueras de la ciudad, Hotel G3 es la excusa perfecta para el relax, confort y disfrutar. Una experiencia gratificante, que hará que quiera volver. Profesionalismo, seguridad y confort, son nuestras premisas. </Typography>
         </div>
-        <div style={styleDiv2}>
+        <div className='divCarrusel' style={styleDiv2}>
         <Carrousel  initialImages={home} showRemoveButton={false} />
         </div>
       </section>
 
-      <section style={styleSection}>
-        <div style={styleDiv2}>
+      <section className='homeSection2' style={styleSection}>
+        <div  className='divCarrusel' style={styleDiv2}>
           <Carrousel initialImages={promo} showRemoveButton={false}/>
         </div>
         <div style={styleDiv}>
@@ -82,16 +82,19 @@ function Home() {
         
       </section>
 
-      <section style={styleSection}>
+      <section className='homeSection' style={styleSection}>
         <div style={styleDiv}>
           <h1 style={h1style}>NOSOTROS</h1>
           <Typography style={textStyle}>Hotel G3, fue fundado en 1956, por un grupo de socios. Desde entonces, abre sus puertas al público ofreciendo excelencia en todos sus servicios.
           Nuestro restaurante cuenta con la mejor calificación por expertos.</Typography>
         </div>
-        <div style={styleDiv2}>
+        <div className='divCarrusel'  style={styleDiv2}>
         <Carrousel initialImages={nos} showRemoveButton={false}/>
         </div>
       </section>
+
+ <AlertBoton text="Su pago fue realizado" name="PAGAR"></AlertBoton>
+      
       <Buscador></Buscador>
       <Footer></Footer>
     </div>

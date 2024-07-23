@@ -133,3 +133,28 @@ textarea:hover {
 h1, button{
   font-family: 'Montserrat', sans-serif;
 }
+
+@media (min-width: 600px) {
+  .homeSection {
+    display:flex;
+    flex-direction: column;
+  }
+}
+@media (min-width: 960px) {
+  .homeSection {
+    display:flex;
+    flex-direction: row;
+  }
+}
+@media (min-width: 600px) {
+  .homeSection2 {
+    display:flex;
+    flex-direction: column-reverse;
+  }
+}
+@media (min-width: 960px) {
+  .homeSection2 {
+    display:flex;
+    flex-direction: row;
+  }
+}
