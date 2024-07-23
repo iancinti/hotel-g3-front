@@ -13,19 +13,20 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import Buscador from '../components/reserva/buscador/buscador';
 
 
 const images = [
         {
-          label: 'TV LED en cada habitación, con conexión a internet.',
+          label: 'TV LED, con conexión a internet.',
             imgPath: 'servicios/service1.jpg',
         },
         {
-          label: 'Conexión Wi-fi en cada habitación y en salas comunes.',
+          label: 'Conexión Wi-fi.',
             imgPath: 'servicios/service2.jpg' ,
         },
         {
-          label: 'Estacionamiento cerrado sin cargo, con servicio de valet-parking.',
+          label: 'Estacionamiento cerrado, con servicio de valet-parking.',
             imgPath: 'servicios/service3.jpg',
         },
         {
@@ -33,7 +34,7 @@ const images = [
             imgPath: 'servicios/service4.jpg' ,
         },
         {
-            label: 'Aire acondicionado frio/calor, en todas las habitaciones y en las areas comunes.',
+            label: 'Aire acondicionado frio/calor',
             imgPath: 'servicios/service5.jpg' ,
         },
     ];
@@ -132,7 +133,7 @@ function Service(){
                                     alt={step.label}
                                 >
                                 <Image src={step.imgPath} 
-                                    width={600} alt='hola' height={600} />
+                                    width={600} alt='imagen' height={600} />
                                 </Box>
                            
                         </div>
@@ -140,7 +141,7 @@ function Service(){
                 </Slider>
                 
             </Box>
-            <Typography style={h1style} >GENERAL</Typography>
+            <Typography style={h1style} >OTROS</Typography>
             <ThemeProvider theme={theme} >
                 <CssBaseline />
                 <Box  sx={{ flexGrow: 1 }}>
@@ -174,7 +175,7 @@ function Service(){
                         </Grid>
                         <Grid item xs={12} md={12} lg={5}>
                             <Item elevation={0}>Calefacción</Item>
-                        </Grid>
+                        </Grid> 
                         <Grid item xs={12} md={12} lg={5}>
                             <Item elevation={0}>Caja fuerte</Item>
                         </Grid>
@@ -185,7 +186,9 @@ function Service(){
                     </Grid>
                 </Box>
             </ThemeProvider>
+            <Buscador></Buscador>
         </div>
+        
     );
 };
 export default Service;

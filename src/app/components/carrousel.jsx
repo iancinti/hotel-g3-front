@@ -7,7 +7,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FaTrash } from 'react-icons/fa';
 
 export default function Carrousel  ({ initialImages , showRemoveButton = true, alt})  {
-    console.log(initialImages)
     const handleRemoveImage = (idImage) => {
         
     };
@@ -15,7 +14,7 @@ export default function Carrousel  ({ initialImages , showRemoveButton = true, a
     const urlImg = 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/';
 
     const carrouselStyle ={
-        height: '40em',
+        height: 'auto',
         margin: '3em auto',
         width: '40em',
     };
@@ -42,7 +41,7 @@ export default function Carrousel  ({ initialImages , showRemoveButton = true, a
                             unoptimized
                             loading='eager'
                             width={600}
-                            height={600}
+                            height={400}
                         />
                         {showRemoveButton && (
                         <FaTrash style={iconStyle} onClick={() => handleRemoveImage(image.idImage)} />

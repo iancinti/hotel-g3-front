@@ -7,6 +7,7 @@ import Footer from './components/footer';
 import { Typography } from '@mui/material';
 import Buscador from './components/reserva/buscador/buscador';
 import { getAllGallery } from '@/service/gallery';
+import AlertBoton from './components/alertBoton';
 
 
 function Home() {
@@ -20,7 +21,6 @@ function Home() {
     const fetchItems = async () => {
       try {
         const data = await getAllGallery();
-        console.log(data)
         setHome(data.filter((d) => d.idAttraction == 2));
         setPromo(data.filter((d) => d.idAttraction == 5));
         setNos(data.filter((d) => d.idAttraction == 4));
@@ -33,12 +33,12 @@ function Home() {
 
   }, []);
 
-  const styleSection ={
-    display: 'flex',
-    flexDirection: 'row',
-    margin: '0 4em',
-    justifyContent: 'space-around',
-  };
+  const styleSection =
+    { 
+      margin: '0 4em',
+      justifyContent: 'space-around',
+    };
+
   const styleDiv ={
     display: 'flex',
     flexDirection: 'column',
@@ -46,8 +46,9 @@ function Home() {
     width: '30em',
   };
   const styleDiv2={
-    width: '38em',
-    marginBottom: '4em'
+    width: '40em',
+    height: 'fit-content',
+    marginBottom: '4em',
   };
     
   const h1style = {
@@ -67,19 +68,19 @@ function Home() {
     <div>
       <Header bannerImg='banners/banner-home.jpg'></Header>
     
-      <section style={styleSection}>
+      <section className='homeSection' style={styleSection}>
         <div style={styleDiv}>
           <h1 style={h1style}>EL HOTEL</h1>
-          <Typography style={textStyle}> Situado en las afueras de la ciudad, Hotel G3 es la excusa perfecta para el relax, confort y disfrutar. Una experiencia gratificante, que hará que quiera volver. Profesionalismo, seguridad y confort, son nuestras premisas. </Typography>
+          <Typography style={textStyle} > Situado en las afueras de la ciudad, Hotel G3 es la excusa perfecta para el relax, confort y disfrutar. Una experiencia gratificante, que hará que quiera volver. Profesionalismo, seguridad y confort, son nuestras premisas. </Typography>
         </div>
-        <div style={styleDiv2}>
-        <Carrousel alt='Hotel'  initialImages={home} showRemoveButton={false} />
+        <div className='divCarrusel' style={styleDiv2}>
+        <Carrousel  initialImages={home} showRemoveButton={false} />
         </div>
       </section>
 
-      <section style={styleSection}>
-        <div style={styleDiv2}>
-          <Carrousel alt='Hotel' initialImages={promo} showRemoveButton={false}/>
+      <section className='homeSection2' style={styleSection}>
+        <div  className='divCarrusel' style={styleDiv2}>
+          <Carrousel initialImages={promo} showRemoveButton={false}/>
         </div>
         <div style={styleDiv}>
           <h1 style={h1style}>PROMOCIONES</h1>
@@ -88,16 +89,19 @@ function Home() {
         
       </section>
 
-      <section style={styleSection}>
+      <section className='homeSection' style={styleSection}>
         <div style={styleDiv}>
           <h1 style={h1style}>NOSOTROS</h1>
           <Typography style={textStyle}>Hotel G3, fue fundado en 1956, por un grupo de socios. Desde entonces, abre sus puertas al público ofreciendo excelencia en todos sus servicios.
           Nuestro restaurante cuenta con la mejor calificación por expertos.</Typography>
         </div>
-        <div style={styleDiv2}>
-        <Carrousel alt='Hotel' initialImages={nos} showRemoveButton={false}/>
+        <div className='divCarrusel'  style={styleDiv2}>
+        <Carrousel initialImages={nos} showRemoveButton={false}/>
         </div>
       </section>
+
+ <AlertBoton text="Su pago fue realizado" name="PAGAR"></AlertBoton>
+      
       <Buscador></Buscador>
       <Footer></Footer>
     </div>

@@ -26,5 +26,17 @@ export class Validations {
         return (value) ? ['', true] : ['Campo requerido', false];
     }
 
+        static minLength(length) {
+            return (value) => {
+                return value.length >= length ? ['', true] : [`Debe tener al menos ${length} caracteres`, false];
+            };
+        }
+    
+        static isPasswordMatch(otherFieldName) {
+            return (value, form) => {
+                return value === form[otherFieldName].text ? ['', true] : ['Las contraseñas no coinciden', false];
+            };
+        }
+
 
 }
