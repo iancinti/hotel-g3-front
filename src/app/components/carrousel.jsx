@@ -9,7 +9,6 @@ import { FaTrash } from 'react-icons/fa';
 export default function Carrousel  ({ initialImages , showRemoveButton = true})  {
     const [images, setImages] = useState(initialImages);
    
-      
     const handleRemoveImage = (index) => {
       const newImages = images.filter((_, i) => i !== index);
       setImages(newImages);
@@ -39,10 +38,12 @@ export default function Carrousel  ({ initialImages , showRemoveButton = true}) 
                             src={image.src}
                             alt={image.alt}          
                             quality={75}
-                            style={{ objectFit: 'cover', width: '40em', height: '40em' }}
+                            style={{ objectFit: 'cover' }}
                             unoptimized
                             loading='eager'
                             priority={index === 0}
+                            width={600}
+                            height={600}
                         />
                         {showRemoveButton && (
                         <FaTrash style={iconStyle} onClick={() => handleRemoveImage(index)} />
