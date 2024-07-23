@@ -2,7 +2,6 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { listRooms } from "../../listRooms";
 import { Container, Typography } from "@mui/material";
 import WifiIcon from '@mui/icons-material/Wifi';
 import { Icon } from '@iconify/react';
@@ -30,8 +29,7 @@ function DetalleReserva() {
             // };
 
             // fetchRoom();
-            const foundRoom = listRooms.find((room) => room.id == id);
-            setRoom(foundRoom);
+            // setRoom(foundRoom);
         }
     }, [id]);
     

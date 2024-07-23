@@ -2,7 +2,6 @@
 import * as React from 'react';
 import Footer from "../components/footer";
 import Header from "../components/header/header";
-import imagen from "../../../public/images/banners/banner-galeria.png";
 
 
 
@@ -15,7 +14,7 @@ export const metadata = {
 export default function GalleryLayout({ children }) {
     return (
         <>
-            <Header bannerImg={imagen.src}></Header>
+            <Header bannerImg='banners/banner-galeria.png'></Header>
             {children}
             <Footer></Footer>
            

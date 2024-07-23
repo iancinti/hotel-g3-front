@@ -9,7 +9,7 @@ export const metadata = {
 export default function ContactLayout({ children }) {
     return (
         <>
-            <Header bannerImg='images/banners/banner-contact.png'></Header>
+            <Header bannerImg='banners/banner-contact.png'></Header>
             {children}
             <Footer></Footer>
         </>

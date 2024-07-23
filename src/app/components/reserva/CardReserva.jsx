@@ -20,7 +20,7 @@ export default function CardReserva({ room }) {
 
     
     const redirectDetailRoom =()=>{
-        router.push( `${pathDetail}/${id}` );
+        router.push( `${pathDetail}/${room.id}` );
     }
 
     const redirectBooking =()=>{

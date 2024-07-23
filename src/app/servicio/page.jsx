@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { Typography } from '@mui/material';
+import { Avatar, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -13,33 +13,28 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import serv1 from '../../../public/images/servicios/service1.jpg';
-import serv2 from '../../../public/images/servicios/service2.jpg';
-import serv3 from '../../../public/images/servicios/service3.jpg';
-import serv4 from '../../../public/images/servicios/service4.jpg';
-import serv5 from '../../../public/images/servicios/service5.jpg';
 
 
 const images = [
         {
           label: 'TV LED en cada habitación, con conexión a internet.',
-          imgPath: serv1 ,
+            imgPath: 'servicios/service1.jpg',
         },
         {
           label: 'Conexión Wi-fi en cada habitación y en salas comunes.',
-          imgPath: serv2 ,
+            imgPath: 'servicios/service2.jpg' ,
         },
         {
           label: 'Estacionamiento cerrado sin cargo, con servicio de valet-parking.',
-          imgPath: serv3,
+            imgPath: 'servicios/service3.jpg',
         },
         {
           label: 'Minibar privado, con reposición diaria y cargo a la cuenta al retirarse.',
-          imgPath: serv4 ,
+            imgPath: 'servicios/service4.jpg' ,
         },
         {
             label: 'Aire acondicionado frio/calor, en todas las habitaciones y en las areas comunes.',
-            imgPath: serv5 ,
+            imgPath: 'servicios/service5.jpg' ,
         },
     ];
 const customStyles = css`
@@ -126,7 +121,6 @@ function Service(){
                         <div key={step.label}>
                            
                                 <Box
-                                    component={Image}
                                     sx={{
                                     height: 'auto',
                                     display: 'block',
@@ -136,8 +130,10 @@ function Service(){
                                     }}
                                     src={step.imgPath}
                                     alt={step.label}
-                                    width={600}
-                                />
+                                >
+                                <Image src={step.imgPath} 
+                                    width={600} alt='hola' height={600} />
+                                </Box>
                            
                         </div>
                     ))}

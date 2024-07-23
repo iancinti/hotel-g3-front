@@ -25,7 +25,7 @@ function DetailRoom({ room }) {
                 <p className="py-4 text-xl">
                     This hotel has 150 air-conditioned rooms including 50 Superior Rooms, 30 Deluxe Rooms, 10 Super Deluxe Rooms, 2 Classic Rooms and 5 Duplex Rooms.
                 </p>
-                <ul className="flex flex-col gap-4">
+                {/* <ul className="flex flex-col gap-4">
                     {room.facility.map((facility, index) => (
                         <li key={index}>
                             *
@@ -35,7 +35,7 @@ function DetailRoom({ room }) {
                         </li>
                     ))
                     }
-                </ul>
+                </ul> */}
             </article>
         </React.Fragment>
     );

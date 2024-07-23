@@ -17,6 +17,7 @@ function Reserva() {
     const [rooms, setRooms] = useState(null);
     const [optionsFilter, setOptionsFilter] = React.useState([]);
     const [ loading, setLoading ] = useState(true);
+    const [ count, setCount ] = useState(0);
 
     const [ tags, setTags ] = useState([]);
     const [ isOpenFilter, setOpenFilter ] = useState( null );
@@ -27,7 +28,7 @@ function Reserva() {
         const fetchItems = async () => {
             try {
                 setLoading( true );
-                const [ services, listRooms ] = await Promise.all([
+                const [ services, {list, total} ] = await Promise.all([
                     (optionsFilter.length == 0)
                         ? getAllServices() : '',
                     getAllRooms({
@@ -37,7 +38,8 @@ function Reserva() {
                     })
                 ]);
 
-                setRooms(listRooms);
+                setCount(Math.ceil(total / pageSize));
+                setRooms(list);
                 if (typeof services != 'string'){
                     setOptionsFilter([optionsFilterDto('Servicio', services)]);
                 }
@@ -121,15 +123,17 @@ function Reserva() {
                                 <CardReservaSkeleton></CardReservaSkeleton>
                             </>
                         }
-                        <div className="flex justify-center">
-                            <Pagination
-                                page={page}
-                                count={3}
-                                variant="outlined"
-                                shape="rounded"
-                                onChange={onChangePagination}
-                            />
-                        </div>
+                        {count > 0
+                            ? <div className="flex justify-center">
+                                <Pagination
+                                    page={page}
+                                    count={count}
+                                    variant="outlined"
+                                    shape="rounded"
+                                    onChange={onChangePagination}
+                                />
+                            </div> : null
+                        }
                     </div>
                 </div>
 

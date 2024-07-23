@@ -72,7 +72,7 @@ function Home() {
   };
   return (
     <div>
-      <Header bannerImg='image 42.png'></Header>
+      <Header bannerImg='banners/banner-home.jpg'></Header>
     
       <section style={styleSection}>
         <div style={styleDiv}>

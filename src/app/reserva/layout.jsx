@@ -9,7 +9,7 @@ export const metadata = {
 function ReservaLayout({ children }) {
     return (
         <>
-            <Header bannerImg='/images/banners/banner-reserva.png'></Header>
+            <Header bannerImg='banners/banner-reserva.png'></Header>
             {children}
             <Footer></Footer>
         </>       
