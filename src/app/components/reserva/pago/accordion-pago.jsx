@@ -10,7 +10,6 @@ function AccordionPago({ person, suite, night, changePrice }) {
     const [totalNight, setTotalNight] = useState(night);
 
     const handleChangeSuite =(e)=>{
-        console.log(e.target);
         changePrice();
     }
 

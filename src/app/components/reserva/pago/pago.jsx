@@ -11,7 +11,6 @@ function Pago(
     // TODO definir logica de negocio, el precio sube si se queda mas noche? o tambien influye el numero de personas
     const onChangePrice = ( night )=>{
         // setPrice(  );
-        console.log('cambiar precio')
     }
 
     const onPagar =()=>{
