@@ -9,7 +9,7 @@ export const metadata = {
 function MiPerfilLayout({ children }) {
     return (
         <>
-                <Header></Header>
+                <Header bannerImg='banners/banner-galeria.png'></Header>
                 { children }
                 <Footer></Footer>
            
