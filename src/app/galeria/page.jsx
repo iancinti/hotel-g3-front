@@ -10,12 +10,18 @@ import { getAllGallery } from '@/service/gallery';
 
 function Gallery() {
 
+  const [simple, setSimple ] = React.useState([]);
+  const [doble, setDoble ] = React.useState([]);
+  const [triple, setTriple ] = React.useState([]);
+
   React.useEffect(()=>{
 
     const fetchItems = async () =>{
       try {
         const data = await getAllGallery();
-        console.log(data)
+        setSimple(data.filter((d) => d.idRoom == 2 ));
+        setDoble(data.filter((d) => d.idRoom == 1 ));
+        setTriple(data.filter((d) => d.idRoom == 3 ));
       } catch (error) {
         
       }
@@ -25,23 +31,6 @@ function Gallery() {
 
   }, []);
 
-    const simple = [
-      { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/gallery/simple01.jpg' , alt: "Habitación", caption: "Habitación simple" },
-      { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/gallery/simple02.jpg', alt: "Habitación", caption: "Habitación simple" },
-      { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/gallery/simple03.jpg', alt: "Habitación", caption: "Habitación simple" },
-      { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/gallery/simple04.jpg', alt: "Habitación", caption: "Habitación simple" },
-    ];
-    const doble = [
-      { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/gallery/doble1.jpg' , alt: "Habitación", caption: "Habitación doble" },
-      { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/gallery/doble2.jpg', alt: "Habitación", caption: "Habitación doble" },
-      { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/gallery/doble3.jpg', alt: "Habitación", caption: "Habitación doble" },
-      { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/gallery/doble4.jpg', alt: "Habitación", caption: "Habitación doble" },
-    ];
-    const triple = [
-      { src: triple1 , alt: "Habitación", caption: "Habitación triple" },
-      { src: triple2, alt: "Habitación", caption: "Habitación triple" },
-      { src: triple3, alt: "Habitación", caption: "Habitación triple" },
-    ];
     const h1style = {
       textAlign: 'center',
       fontSize: '2.5em',
@@ -57,11 +46,11 @@ function Gallery() {
         <div >
             <Typography style={h1style} >NUESTRAS HABITACIONES</Typography>            
             <h2 style={h2style}>SUITE SIMPLE</h2>
-            <Carrousel initialImages={simple} />
+            <Carrousel alt='Habitacion' initialImages={simple} />
             <h2 style={h2style}>SUITE DOBLE</h2>
-            <Carrousel initialImages={doble} />
+            <Carrousel alt='Habitacion' initialImages={doble} />
             <h2 style={h2style}>SUITE TRIPLE</h2>
-            <Carrousel initialImages={triple} />
+            <Carrousel alt='Habitacion' initialImages={triple} />
             <Buscador></Buscador>
         </div>
     );

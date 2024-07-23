@@ -6,14 +6,14 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { FaTrash } from 'react-icons/fa';
 
-export default function Carrousel  ({ initialImages , showRemoveButton = true})  {
-    const [images, setImages] = useState(initialImages);
-   
-    const handleRemoveImage = (index) => {
-      const newImages = images.filter((_, i) => i !== index);
-      setImages(newImages);
+export default function Carrousel  ({ initialImages , showRemoveButton = true, alt})  {
+    console.log(initialImages)
+    const handleRemoveImage = (idImage) => {
+        
     };
     
+    const urlImg = 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/';
+
     const carrouselStyle ={
         height: '40em',
         margin: '3em auto',
@@ -32,23 +32,21 @@ export default function Carrousel  ({ initialImages , showRemoveButton = true}) 
     return(
         <div style={carrouselStyle}>
             <Carousel showThumbs={false}>
-                {images.map((image, index) => (
-                    <div key={index} style={{ position: 'relative', width: '100%', height: '40em' }}>
+                {initialImages.map((image) => (
+                    <div key={image.idImage} style={{ position: 'relative', width: '100%', height: '40em' }}>
                         <Image
-                            src={image.src}
-                            alt={image.alt}          
+                            src={urlImg + image.imageUrl['0']}
+                            alt={'Habitacion'}
                             quality={75}
                             style={{ objectFit: 'cover' }}
                             unoptimized
                             loading='eager'
-                            priority={index === 0}
                             width={600}
                             height={600}
                         />
                         {showRemoveButton && (
-                        <FaTrash style={iconStyle} onClick={() => handleRemoveImage(index)} />
+                        <FaTrash style={iconStyle} onClick={() => handleRemoveImage(image.idImage)} />
                     )}
-                        <p className="legend">{image.caption}</p>
                     </div>
                 ))}
             </Carousel>

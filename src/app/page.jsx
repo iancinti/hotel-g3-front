@@ -6,27 +6,33 @@ import Carrousel from './components/carrousel';
 import Footer from './components/footer';
 import { Typography } from '@mui/material';
 import Buscador from './components/reserva/buscador/buscador';
+import { getAllGallery } from '@/service/gallery';
 
 
 function Home() {
-  const home = [
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/home1.jpg' , alt: "Fotos del hotel", caption: "Nuestras instalaciones" },
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/home2.jpg', alt: "Fotos del hotel", caption: "Nuestras instalaciones" },
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/home3.jpg', alt: "Fotos del hotel", caption: "Nuestras instalaciones" },
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/home4.jpg', alt: "Fotos del hotel", caption: "Nuestras instalaciones" },
-  ];
-  const promo = [
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/promo1.jpg' , alt: "Fotos del hotel", caption: "Promociones" },
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/promo2.jpg', alt: "Fotos del hotel", caption: "Promociones" },
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/promo3.jpg', alt: "Fotos del hotel", caption: "Promociones" },
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/promo4.jpg', alt: "Fotos del hotel", caption: "Promociones" },
-  ];
-  const nos = [
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/nos1.jpg' , alt: "Fotos del hotel", caption: "Nosotros" },
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/nos2.jpg', alt: "Fotos del hotel", caption: "Nosotros" },
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/nos3.jpg', alt: "Fotos del hotel", caption: "Nosotros" },
-    { src: 'https://utennwehrdbsrygnbwyk.supabase.co/storage/v1/object/public/images/homeimg/nos4.jpg', alt: "Fotos del hotel", caption: "Nosotros" },
-  ];
+
+  const [home, setHome] = React.useState([]);
+  const [promo, setPromo] = React.useState([]);
+  const [nos, setNos] = React.useState([]);
+
+  React.useEffect(() => {
+
+    const fetchItems = async () => {
+      try {
+        const data = await getAllGallery();
+        console.log(data)
+        setHome(data.filter((d) => d.idAttraction == 2));
+        setPromo(data.filter((d) => d.idAttraction == 5));
+        setNos(data.filter((d) => d.idAttraction == 4));
+      } catch (error) {
+
+      }
+    }
+
+    fetchItems();
+
+  }, []);
+
   const styleSection ={
     display: 'flex',
     flexDirection: 'row',
@@ -67,13 +73,13 @@ function Home() {
           <Typography style={textStyle}> Situado en las afueras de la ciudad, Hotel G3 es la excusa perfecta para el relax, confort y disfrutar. Una experiencia gratificante, que hará que quiera volver. Profesionalismo, seguridad y confort, son nuestras premisas. </Typography>
         </div>
         <div style={styleDiv2}>
-        <Carrousel  initialImages={home} showRemoveButton={false} />
+        <Carrousel alt='Hotel'  initialImages={home} showRemoveButton={false} />
         </div>
       </section>
 
       <section style={styleSection}>
         <div style={styleDiv2}>
-          <Carrousel initialImages={promo} showRemoveButton={false}/>
+          <Carrousel alt='Hotel' initialImages={promo} showRemoveButton={false}/>
         </div>
         <div style={styleDiv}>
           <h1 style={h1style}>PROMOCIONES</h1>
@@ -89,7 +95,7 @@ function Home() {
           Nuestro restaurante cuenta con la mejor calificación por expertos.</Typography>
         </div>
         <div style={styleDiv2}>
-        <Carrousel initialImages={nos} showRemoveButton={false}/>
+        <Carrousel alt='Hotel' initialImages={nos} showRemoveButton={false}/>
         </div>
       </section>
       <Buscador></Buscador>
