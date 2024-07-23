@@ -10,12 +10,8 @@ const request = async (endpoint, options = {}) => {
 };
 
 const basePath = '/booking/rooms'
-export const getAllRooms = ({ page, pageSize, types }) =>{
-    let params = `pageNumber=${page}&pageSize=${pageSize}`;
-    if (types) params += `&types=${ types }`;
-
+export const getAllRooms = ( params ) =>{
     const path = `${basePath}?${params}`;
-    console.log(path)
     return request(path);
 }
 
