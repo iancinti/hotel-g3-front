@@ -27,7 +27,7 @@ export default function CardReserva({ room }) {
     }
 
     return (
-      <Card sx={{ width: { xl: '50em'} }}>
+      <Card >
         <CardContent>
           <div className='flex justify-center flex-wrap hover-img' style={{
             width: "100%", height: '100%'}}

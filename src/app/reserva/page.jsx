@@ -9,6 +9,7 @@ import TagsFiltro from "../components/filtro/tagsFiltro";
 import { getAllServices } from "@/service/services";
 import CardReservaSkeleton from "@/skeleton-loaders/cardReservaSkeleton";
 import { getAllRooms } from "@/service/booking";
+import { roomTypes } from "./roomtypes";
 
 function Reserva() {
 
@@ -35,13 +36,17 @@ function Reserva() {
                         page,
                         pageSize,
                         // types: 
+                        serviceIds: tags.toString()
                     })
                 ]);
 
                 setCount(Math.ceil(total / pageSize));
                 setRooms(list);
                 if (typeof services != 'string'){
-                    setOptionsFilter([optionsFilterDto('Servicio', services)]);
+                    setOptionsFilter([
+                        optionsFilterDto('Servicio', services),
+                        roomTypes
+                    ]);
                 }
 
 
@@ -63,11 +68,11 @@ function Reserva() {
     }
 
     const onChangeFilter =(event)=>{
-        const { name, checked } = event.target;
-        updateFilterAndTags( name, checked );
+        const { id, name, checked } = event.target;
+        updateFilterAndTags( name, checked, id );
     }
 
-    const updateFilterAndTags =(name, checked)=>{
+    const updateFilterAndTags =(name, checked, id)=>{
         const updatedOptionsFilter = optionsFilter.map((item) => ({
             ...item,
             options: item.options.map((option) =>
@@ -78,7 +83,7 @@ function Reserva() {
         setOptionsFilter(updatedOptionsFilter);
 
         if (checked) setTags(()=>{
-            const newTags = [...tags, name];
+            const newTags = [...tags, id];
             return newTags;
         })
         else setTags(value =>{
@@ -107,7 +112,7 @@ function Reserva() {
                 />
                 <div className="flex gap-10 relative justify-center">
                     <Filtro isOpen={isOpenFilter} changeFilter={onChangeFilter} listOptions={optionsFilter} loading={loading}></Filtro>
-                    <div className="grid gap-10">
+                    <div className="grid gap-10 flex-grow">
                         {(rooms && !loading)
                             ? rooms.map((room, index) => (
                                 <CardReserva

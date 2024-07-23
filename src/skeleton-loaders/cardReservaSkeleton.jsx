@@ -7,8 +7,7 @@ export default function CardReservaSkeleton() {
     return (
         
         <Card sx={{
-            width: { xl: '54em', md: '45em', sm: '30em' },
-            height: { xl: '25em', md: '20em', sm: '15em' },
+            height: { md: '20em', sm: '15em' },
             background: 'transparent', display: 'flex', gap: '0.5rem'
         }}>
             <Skeleton

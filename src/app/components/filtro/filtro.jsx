@@ -53,6 +53,7 @@ export default function Filtro({ isOpen, changeFilter, listOptions, loading }) {
                                             }}>
                                                 <FormControlLabel control={
                                                     <Checkbox checked={checked} name={name}
+                                                        id={id}
                                                         onChange={changeFilter}
                                                         color='info'
                                                     />
