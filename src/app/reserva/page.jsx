@@ -28,11 +28,21 @@ function Reserva() {
             try {
                 setLoading( true );
                 const [ services, listRooms ] = await Promise.all([
-                    getAllServices(),
-                    getAllRooms(`pageNumber=${page}&pageSize=${pageSize}`)
+                    (optionsFilter.length == 0)
+                        ? getAllServices() : '',
+                    getAllRooms({
+                        page,
+                        pageSize,
+                        // types: 
+                    })
                 ]);
+
                 setRooms(listRooms);
-                setOptionsFilter([optionsFilterDto('Servicio', services)]);
+                if (typeof services != 'string'){
+                    setOptionsFilter([optionsFilterDto('Servicio', services)]);
+                }
+
+
             } catch (error) {
                 console.error('Error al obtener los items:', error);
             }finally{
@@ -41,7 +51,7 @@ function Reserva() {
         };
 
         fetchItems();
-    }, [page]);
+    }, [page, tags]);
 
     const optionsFilterDto = ( title, data ) =>{
         return {
@@ -67,12 +77,10 @@ function Reserva() {
 
         if (checked) setTags(()=>{
             const newTags = [...tags, name];
-            loadRooms( newTags );
             return newTags;
         })
         else setTags(value =>{
             const newTags = [...value.filter(f => f !== name)];
-            loadRooms( newTags );
             return newTags;
         });
     }
@@ -80,10 +88,6 @@ function Reserva() {
     const onSearchRooms = ({ checkin, checkout, room, person })=>{
         const params = `checkin=${checkin}&checkout=${checkout}&room=${room}&person=${person}`;
         router.push(`/reserva?${params}`);
-    }
-
-    const loadRooms =( tags )=>{
-        // ! Llamada a Back para traer listado
     }
 
     const onChangePagination =(e, value)=>{
@@ -102,7 +106,7 @@ function Reserva() {
                 <div className="flex gap-10 relative justify-center">
                     <Filtro isOpen={isOpenFilter} changeFilter={onChangeFilter} listOptions={optionsFilter} loading={loading}></Filtro>
                     <div className="grid gap-10">
-                        { (!loading)
+                        {(rooms && !loading)
                             ? rooms.map((room, index) => (
                                 <CardReserva
                                     key={index}
