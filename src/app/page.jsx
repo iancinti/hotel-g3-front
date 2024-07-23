@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import './globals.css';
 import Header from "./components/header/header";
 import Carrousel from './components/carrousel';
 import Footer from './components/footer';
@@ -76,7 +77,7 @@ function Home() {
       <section style={styleSection}>
         <div style={styleDiv}>
           <h1 style={h1style}>EL HOTEL</h1>
-          <Typography style={textStyle}>Situado en las afueras de la ciudad, Hotel G3 es la excusa perfecta para el relax, confort y disfrutar. Una experiencia gratificante, que hará que quiera volver. Profesionalismo, seguridad y confort, son nuestras premisas.</Typography>
+          <Typography style={textStyle}> Situado en las afueras de la ciudad, Hotel G3 es la excusa perfecta para el relax, confort y disfrutar. Una experiencia gratificante, que hará que quiera volver. Profesionalismo, seguridad y confort, son nuestras premisas. </Typography>
         </div>
         <div style={styleDiv2}>
         <Carrousel  initialImages={home} showRemoveButton={false} />

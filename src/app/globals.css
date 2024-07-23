@@ -6,6 +6,14 @@
   --principal: #081928;
   --secundario: #2B8BE3;
   --fondo: #E6F1FC;
+  
+}
+:root {
+  --main-font: 'Raleway', sans-serif;
+}
+
+body .body {
+  font-family: var(--main-font);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -107,4 +115,10 @@ textarea:hover {
   .text-balance {
     text-wrap: balance;
   }
+}
+.css-ahj2mt-MuiTypography-root, p{
+  font-family: var(--main-font);
+}
+h1, button{
+  font-family: 'Montserrat', sans-serif;
 }

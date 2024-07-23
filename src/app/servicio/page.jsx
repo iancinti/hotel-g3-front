@@ -9,6 +9,10 @@ import Image from 'next/image';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { css, Global } from '@emotion/react';
+import { styled } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import serv1 from '../../../public/images/servicios/service1.jpg';
 import serv2 from '../../../public/images/servicios/service2.jpg';
 import serv3 from '../../../public/images/servicios/service3.jpg';
@@ -44,6 +48,24 @@ const customStyles = css`
     color: #081928; 
   }
   `;
+const theme = createTheme({
+    palette: {
+      text: {
+        primary: '#081928',
+      },
+    },
+    
+  });
+
+
+const Item = styled(Paper)(({ theme }) => ({
+    padding: theme.spacing(1),
+    textAlign: 'center',    
+    backgroundColor: "#E6F1FC",
+    }
+
+
+)); 
 
 function Service(){
     
@@ -78,7 +100,8 @@ function Service(){
     };
     const boxStyle = {
         margin: '0 auto',
-    }
+    };
+  
     return (
         <div>
             <Typography style={h1style} >NUESTROS SERVICIOS</Typography>
@@ -113,7 +136,6 @@ function Service(){
                                     }}
                                     src={step.imgPath}
                                     alt={step.label}
-                                    layout="responsive"
                                     width={600}
                                 />
                            
@@ -122,6 +144,51 @@ function Service(){
                 </Slider>
                 
             </Box>
+            <Typography style={h1style} >GENERAL</Typography>
+            <ThemeProvider theme={theme} >
+                <CssBaseline />
+                <Box  sx={{ flexGrow: 1 }}>
+                    <Grid color="textPrimary" fontWeight={'700'} fontFamily={'Raleway'} style={{ fontSize: '1.5em' }} alignItems={"center"} justifyContent={"space-evenly"} container spacing={3} >
+                        <Grid item xs={12} md={12} lg={5}>
+                            <Item elevation={0}>Check in 14.00hs</Item>
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={5}>
+                            <Item elevation={0}>Check out 10.00hs</Item>
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={5}>
+                            <Item elevation={0}>Desayuno opcional con cargo de 7.30 a 10.30 hs</Item>
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={5}>
+                            <Item elevation={0}>Servicio de conserjería</Item>
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={5}>
+                            <Item elevation={0}>Alquiler de autos</Item>
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={5}>
+                            <Item elevation={0}>Cambio de moneda</Item>
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={5}>
+                            <Item elevation={0}>Información turística</Item>
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={5}>
+                            <Item elevation={0}>No se admiten mascotas</Item>
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={5}>
+                            <Item elevation={0}>Habitaciones aptas para alérgicos</Item>
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={5}>
+                            <Item elevation={0}>Calefacción</Item>
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={5}>
+                            <Item elevation={0}>Caja fuerte</Item>
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={5}>
+                            <Item elevation={0}>Ascensor</Item>
+                        </Grid>
+                        
+                    </Grid>
+                </Box>
+            </ThemeProvider>
         </div>
     );
 };
