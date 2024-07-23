@@ -105,6 +105,7 @@ textarea:hover {
 .hover-img:hover .image-rotate {
   scale: 1;
   transform: rotate(0);
+
 }
 
 @media screen and (min-width: 620px) {
