@@ -9,6 +9,7 @@ import RestaurantIcon from '@mui/icons-material/Restaurant';
 import DetailRoom from "./detail-room";
 import Boton from "@/app/components/boton";
 import { useRouter } from "next/navigation";
+import { getRoomById } from "@/service/booking";
 
 
 function DetalleReserva() {
@@ -19,17 +20,16 @@ function DetalleReserva() {
 
     useEffect(() => {
         if (id) {
-            // const fetchRoom = async () => {
-            //   try {
-            //     const data = await getRoomById(id); // Asegúrate de pasar el id aquí
-            //     setRoom(data);
-            //   } catch (error) {
-            //     console.error('Error al obtener los items:', error);
-            //   }
-            // };
+            const fetchRoom = async () => {
+              try {
+                const data = await getRoomById(id);
+                setRoom(data);
+              } catch (error) {
+                console.error('Error al obtener los items:', error);
+              }
+            };
 
-            // fetchRoom();
-            // setRoom(foundRoom);
+            fetchRoom();
         }
     }, [id]);
     
