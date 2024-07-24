@@ -6,6 +6,8 @@ import { useState } from "react";
 import Boton from "../components/boton";
 import { Validations } from "../utils/validations";
 import { FormUtils } from "../utils/formUtils";
+import { supabase } from "../../../lib/supabase";
+import { createCustomer } from "@/service/customer";
 
 const dataForm = {
     nombres: {
@@ -20,13 +22,12 @@ const dataForm = {
         text: '',
         validations: [Validations.required, Validations.isMailValid ]
     }, 
-    contrasena: {
+    phoneNumber: {
         text: '',
-        validations: [Validations.required, Validations.minLength(8), Validations.isPasswordMatch('confirmarContrasena') ]
-    }, 
-    confirmarContrasena: {
+        validations: [Validations.required, Validations.isNumberPhone ]
+    }, password: {
         text: '',
-        validations: [ Validations.required, Validations.isPasswordMatch('contrasena') ]
+        validations: [Validations.required, Validations.minLength(8)]
     }
 }
 
@@ -34,6 +35,7 @@ function Registro() {
 
     const router = useRouter();
     const [ form, setForm ] = useState(dataForm);
+    const [error, setError] = useState(null);
 
 
     const onSetForm =( e )=>{
@@ -61,13 +63,29 @@ function Registro() {
         const spanError = document.getElementById(key);
 
         FormUtils.showInfoAllForm(
-            { form, inputs, spanError, message, key, isValid, fnOk: sendMessage }
+            { form, inputs, spanError, message, key, isValid }
         );
+
+        if (isValid) {
+            handleSignup();
+        }
     }
 
-    const sendMessage = ()=>{
-        alert('Mensaje enviado')
-    }
+    const handleSignup = async () => {
+        const { user, error } = await supabase.auth.signUp({
+            email: form.correo.text,
+            password: form.password.text,
+        });
+
+        const customer = await createCustomer({
+            firstName: form.nombres.text,
+            lastName: form.apellidos.text,
+            email: form.correo.text,
+            phoneNumber: form.phoneNumber.text,
+        });
+
+        if (error) setError(error.message);
+    };
 
     return (
         <Container maxWidth='xl' sx={{
@@ -78,7 +96,7 @@ function Registro() {
             </header>
             <Container maxWidth='md'>
                 <main>
-                    <form id="formPago" className="content-frm" onSubmit={onsubmit} autoComplete="false">
+                    <form id="forrmSignUp" className="content-frm" onSubmit={onsubmit} autoComplete="false">
                         <div className="frm-div-input">
                             <label htmlFor="nombre">Nombre</label>
                             <input 
@@ -88,7 +106,7 @@ function Registro() {
                                 value={form.nombres.text} name="nombres"
                                 onChange={onSetForm}
                             />
-                            <span id="name" className="text-red-500 hidden"></span>
+                            <span id="nombres" className="text-red-500 hidden"></span>
                         </div>
                         <div className="frm-div-input">
                             <label htmlFor="apellido">Apellido</label>
@@ -113,33 +131,33 @@ function Registro() {
                             <span id="correo" className="text-red-500 hidden"></span>
                         </div>
                         <div className="frm-div-input">
-                            <label htmlFor="contrasena">Contraseña</label>
-                            <input 
-                                id="formcontrasena" 
-                                type="password" 
-                                placeholder="Contraseña"
-                                value={form.contrasena.text} name="contrasena"
+                            <label htmlFor="formTel">Telefono</label>
+                            <input
+                                id="formTel"
+                                type="text"
+                                placeholder="+xx xxxxx"
+                                value={form.phoneNumber.text} name="phoneNumber"
                                 onChange={onSetForm}
                             />
-                            <span id="contrasena" className="text-red-500 hidden"></span>
+                            <span id="phoneNumber" className="text-red-500 hidden"></span>
                         </div>
                         <div className="frm-div-input">
-                            <label htmlFor="confirmarContrasena">Confirmar Contraseña</label>
-                            <textarea
-                                id="formmessage"
-                                type="isPasswordMatch"
-                                placeholder="Confirma tu contraseña"
-                                value={form.confirmarContrasena.text} name="confirmarContrasena"
+                            <label htmlFor="formContra">Contraseña</label>
+                            <input
+                                id="formContra"
+                                type="password"
+                                value={form.password.text} name="password"
                                 onChange={onSetForm}
-                            ></textarea>
-                            <span id="confirmarContrasena" className="text-red-500 hidden"></span>
+                            />
+                            <span id="password" className="text-red-500 hidden"></span>
                         </div>
                     </form>
                     <div className="frm-content-btn justify-center pt-4">
-                        <Boton text='Registrarte' type='submit' form='formPago'/>
+                        <Boton text='Registrarte' type='submit' form='forrmSignUp'/>
                     </div>
                 </main>
             </Container>
+            {error && <p>{error}</p>}
         </Container>
     );
 }
