@@ -10,20 +10,20 @@ function DetailRoom({ room }) {
                 <h3 className="text-4xl font-bold">Descripción</h3>
             </div>
             <article className="flex flex-col pag-4 my-4 p-4 bg-white">
-                <h4 className="text-2xl font-bold">Enjoy A Luxurious Experience!</h4>
+                <h4 className="text-2xl font-bold">¡Disfruta de una experiencia de lujo!</h4>
                 <p className="py-4 text-xl">
-                    A luxurious hotel in Duba, Sea view is just 500 meters away from the main center. Featuring palatial space, modern architecture
-                    and stylish interiors, this hotel is an ideal choice for a peaceful relaxation or a business trip.
+                Un lujoso hotel en CABA, está a solo 500 metros del centro. Con espacio palaciego, arquitectura moderna. 
+                Con sus elegantes interiores, este hotel es la opción ideal para una relajación tranquila o un viaje de negocios.
                 </p>
 
-                <h4 className="text-2xl font-bold">Dining</h4>
+                <h4 className="text-2xl font-bold">Comidas</h4>
                 <p className="py-4 text-xl">
-                    The luxurious hotel in dubai features an in-house restaurant and a bar. Flame N Grill restaurant operates from 7.30 AM till midnight. It offers multi-cuisine menu including Continental, Chinese, Indian and Goan dishes. Pool Deck BAR is a paradise providing a range of beverages. Featuring a water fountain, it also offers a pleasant ambience to enjoy your drinks.
+                Este hotel de lujo se encuentra en CABA y cuenta con un restaurante y un bar. El restaurante Flame N Grill funciona desde las 7:30 hasta la medianoche. Ofrece un menú de cocina variada que incluye platos continentales, chinos, indios y de Goa. Pool Deck BAR es un paraíso que ofrece una variedad de bebidas. Cuenta con una fuente de agua, pero también ofrece un ambiente agradable para disfrutar de sus bebidas.
                 </p>
 
-                <h4 className="text-2xl font-bold">Room Facilities</h4>
+                <h4 className="text-2xl font-bold">Instalaciones de la habitación</h4>
                 <p className="py-4 text-xl">
-                    This hotel has 150 air-conditioned rooms including 50 Superior Rooms, 30 Deluxe Rooms, 10 Super Deluxe Rooms, 2 Classic Rooms and 5 Duplex Rooms.
+                Este hotel cuenta con 150 habitaciones con aire acondicionado, incluyendo 50 habitaciones superiores, 30 habitaciones Deluxe, 10 habitaciones Super Deluxe, 2 habitaciones clásicas y 5 habitaciones dúplex.
                 </p>
                 {/* <ul className="flex flex-col gap-4">
                     {room.facility.map((facility, index) => (
