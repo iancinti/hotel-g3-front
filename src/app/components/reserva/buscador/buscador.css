@@ -1,0 +1,40 @@
+.contain{
+    padding: 20px 0;
+    min-height: 120px;
+}
+
+.item{
+    color: #fff;
+    display: grid;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
+
+@media screen and (max-width: 650px) {
+    .item{
+        border: none;
+    }
+}
+
+.item label{
+    text-align: center;
+    font-size: 1.2em;
+}
+
+input[type="number"]{
+    background-color: transparent;
+    outline: none;
+    text-align: center;
+    color: #fff;
+    padding: 16.5px 14px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* @media screen {
+    
+} */
