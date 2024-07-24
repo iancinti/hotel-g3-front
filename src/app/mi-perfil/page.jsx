@@ -6,7 +6,6 @@ import { Validations } from "../utils/validations";
 import Boton from "../components/boton";
 import { FormUtils } from "../utils/formUtils";
 
-// !OJO este objeto vendra desde base de datos, solo la propiedad text, el validations se lo coloca aqui
 const dataForm = {
     name: {
         text: 'Miguel',

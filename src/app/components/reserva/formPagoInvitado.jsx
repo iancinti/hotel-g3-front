@@ -60,7 +60,7 @@ function FormPagoInvitado({ handlePayment }) {
         );
 
         if(!isValid) return;
-        handlePayment();
+        handlePayment(form);
     }
 
     return (
