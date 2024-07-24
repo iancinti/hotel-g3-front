@@ -19,10 +19,9 @@ function Pago(
         const checkOutDate = new Date( checkout );
 
         const data = await createBooking({
-            id: 0,
-            idCustomer: 1,
             checkInDate,
-            checkOutDate
+            checkOutDate,
+            totalAmount: price
         });
         // console.log(data)
     }

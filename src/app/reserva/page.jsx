@@ -36,7 +36,7 @@ function Reserva() {
                         page,
                         pageSize,
                         // types: 
-                        serviceIds: tags.toString()
+                        // serviceIds: tags.toString()
                     })
                 ]);
 
@@ -83,7 +83,7 @@ function Reserva() {
         setOptionsFilter(updatedOptionsFilter);
 
         if (checked) setTags(()=>{
-            const newTags = [...tags, id];
+            const newTags = [...tags, name];
             return newTags;
         })
         else setTags(value =>{
