@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { getRoomById } from "@/service/booking";
 
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import SkeletonDetalle from "@/skeleton-loaders/skeletonReservaDetalle";
 
 
 function DetalleReserva() {
@@ -37,7 +38,7 @@ function DetalleReserva() {
     
     if (!room) {
         // TODO insertar pantalla de carga
-        return <div>Loading...</div>;
+        return  <SkeletonDetalle></SkeletonDetalle>
     }
 
     return (
