@@ -1,21 +1,30 @@
 "use client"
-import { Button, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import AccordionPago from "./accordion-pago";
-import { useState } from "react";
-import Boton from "../../boton";
+import AlertBoton from "../../alertBoton";
+import { createBooking } from "@/service/booking";
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 
 function Pago(
-    { checkin, checkout, person, suite, night, price }
+    { checkin, checkout, price, typeRoom, name, person }
 ) {
 
     // TODO definir logica de negocio, el precio sube si se queda mas noche? o tambien influye el numero de personas
-    const onChangePrice = ( night )=>{
-        // setPrice(  );
-    }
+    // const onChangePrice = ( night )=>{
+    //     // setPrice(  );
+    // }
 
-    const onPagar =()=>{
+    const saveBooking = async () => {
+        const checkInDate = new Date( checkin );
+        const checkOutDate = new Date( checkout );
 
-        alert(`${checkin}, ${checkout}, ${person}, ${suite}, ${night}, ${price}` );
+        const data = await createBooking({
+            id: 0,
+            idCustomer: 1,
+            checkInDate,
+            checkOutDate
+        });
+        // console.log(data)
     }
 
     return (
@@ -24,15 +33,19 @@ function Pago(
                 className="p-12">
                 <section className="grid md:grid-cols-2">
                     <div className="flex justify-center items-start flex-col mb-4">
-                        <header className="text-5xl"> Habitacion 1 </header>
+                        <header className="text-5xl"> { name } </header>
                         <p className="text-4xl">
-                            Servicios
+                            ( {typeRoom } )
                         </p>
+                        <div className='flex items-center pt-8'>
+                            <span className='text-2xl'>{person}</span>
+                            <EmojiPeopleIcon />
+                        </div>
                     </div>
                     <div className="flex justify-end">
                         <img style={{
                             width: '100%'
-                        }} src="images/banners/fondo-pago.png" alt="" />
+                        }} src="banners/fondo-pago.png" alt="" />
                     </div>
                 </section>
                 <section className="md:text-2xl">
@@ -49,10 +62,12 @@ function Pago(
 
                     <div className="py-6">
                         <AccordionPago
-                            night={night}
-                            suite={suite}
-                            person={person}
-                            changePrice={onChangePrice}
+                            night='2'
+                            suite={typeRoom}
+                            person='4'
+                            changePrice={()=>{
+                                
+                            }}
                         ></AccordionPago>
                     </div>
                     <div>
@@ -63,7 +78,7 @@ function Pago(
                         </div>
                     </div>
                     <div className="flex justify-end pt-4">
-                        <Boton text='Pagar' handledClick={onPagar}/>
+                        <AlertBoton handleClick={saveBooking} text="Su pago fue realizado" name="PAGAR"/>
                     </div>
                 </section>
             </main>

@@ -99,8 +99,6 @@ function Home() {
         <Carrousel initialImages={nos} showRemoveButton={false}/>
         </div>
       </section>
-
- <AlertBoton text="Su pago fue realizado" name="PAGAR"></AlertBoton>
       
       <Buscador></Buscador>
       <Footer></Footer>

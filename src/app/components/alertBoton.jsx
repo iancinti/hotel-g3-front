@@ -6,7 +6,7 @@ import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 
-export default function AlertBoton({text, name}) {
+export default function AlertBoton({text, name, handleClick}) {
   const [abre, setAbre] = React.useState(false);
 
   return (
@@ -41,8 +41,9 @@ export default function AlertBoton({text, name}) {
                 variant="contained"
                 disabled={abre}
                 onClick={() => {
-                setAbre(true);
-               
+                    if(handleClick) handleClick();
+                    
+                    setAbre(true);
                 }}
             >{name}
 

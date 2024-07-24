@@ -11,6 +11,8 @@ import Boton from "@/app/components/boton";
 import { useRouter } from "next/navigation";
 import { getRoomById } from "@/service/booking";
 
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+
 
 function DetalleReserva() {
 
@@ -53,13 +55,20 @@ function DetalleReserva() {
                         <Icon width='2.3em' icon="fa6-solid:person-swimming" />
                         <RestaurantIcon sx={{ fontSize: 40 }}>  </RestaurantIcon>
                     </Typography>
+                    <div className='flex items-center'>
+                        <span className='text-2xl'>{room.numberPeople}</span>
+                        <EmojiPeopleIcon />
+                    </div>
                 </div>
                 <div className="self-end">
                     <Typography display="flex" fontSize={'1.25em'} fontWeight={'700'} component="div">
-                        {room.price} / por noche
+                        ${room.price} / por noche
                     </Typography>
                     <Boton text="Reservar" 
-                        handledClick={() => router.push('/payment')}
+                        handledClick={() => {
+                            const params = `checkinDate=2024/07/25&checkoutDate=2024/07/27&name=${room.name}&typeRoom=${room.type}&price=${room.price}&person=${room.numberPeople}`;
+                            router.push(`/payment?${params}`);
+                        }}
                     />
                 </div>
             </div>

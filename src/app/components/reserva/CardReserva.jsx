@@ -13,17 +13,13 @@ import { useRouter } from 'next/navigation';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 
 
-export default function CardReserva({ room }) {
+export default function CardReserva({ room, handleClick }) {
 
     const router = useRouter();
     const pathDetail = '/reserva/detalle-reserva';
     
     const redirectDetailRoom =()=>{
       router.push(`${pathDetail}/${room.idRoom}` );
-    }
-
-    const redirectBooking =()=>{
-        router.push('/payment');
     }
 
     return (
@@ -65,7 +61,7 @@ export default function CardReserva({ room }) {
                 <Typography display="flex" fontSize={'1.4em'} fontWeight={'700'} component="div">
                   ${room.price}.00 / por noche
                 </Typography>
-                <Boton text="Reservar" handledClick={redirectBooking}></Boton>
+                <Boton text="Reservar" handledClick={() => handleClick(room)}></Boton>
               </div>
             </div>
           </div>

@@ -92,13 +92,17 @@ function Reserva() {
         });
     }
 
-    const onSearchRooms = ({ checkin, checkout, room, person })=>{
-        const params = `checkin=${checkin}&checkout=${checkout}&room=${room}&person=${person}`;
-        router.push(`/reserva?${params}`);
+    const onSearchRooms = ({ checkin, checkout })=>{
+        
     }
 
     const onChangePagination =(e, value)=>{
         setPage( value );
+    }
+
+    const onBooking = ({ name, type, price, numberPeople })=>{
+        const params = `checkinDate=2024/07/25&checkoutDate=2024/07/27&name=${name}&typeRoom=${type}&price=${price}&person=${numberPeople}`;
+        router.push(`payment?${params}`);
     }
 
     return (
@@ -114,9 +118,10 @@ function Reserva() {
                     <Filtro isOpen={isOpenFilter} changeFilter={onChangeFilter} listOptions={optionsFilter} loading={loading}></Filtro>
                     <div className="grid gap-10 flex-grow">
                         {(rooms && !loading)
-                            ? rooms.map((room, index) => (
+                            ? rooms.map((room) => (
                                 <CardReserva
-                                    key={index}
+                                    handleClick={onBooking}
+                                    key={room.idRoom}
                                     room={room}
                                 />
                             ))

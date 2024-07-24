@@ -37,9 +37,8 @@ export default function Buscador({ handledSearch }) {
         if (Validations.allFieldRequired(form)) {
             const checkin = form.checkin.format(dateFormat);
             const checkout = form.checkout.format(dateFormat);
-            const { room, person } = form;
 
-            handledSearch({ checkin, checkout, room, person });
+            handledSearch({ checkin, checkout});
         }
     }
 
