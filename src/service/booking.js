@@ -6,6 +6,7 @@ const request = async (endpoint, options = {}) => {
     if (!response.ok) {
         throw new Error('Error en la solicitud');
     }
+    
     return response.json();
 };
 
@@ -22,10 +23,10 @@ export const getAllRooms = ({ page, pageSize, types, serviceIds }) =>{
 
 export const getRoomById = (id) => request(`${basePath}/${id}`);
 
-// export const createService = (data) => request('/Services', {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(data),
-// });
+export const createBooking = (data) => request('/booking', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+});
